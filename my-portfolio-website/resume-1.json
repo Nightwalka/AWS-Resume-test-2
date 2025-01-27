@@ -1,0 +1,115 @@
+{
+    "resume": {
+        "personal_info": {
+            "name": "Ronald Tino Mukuya",
+            "phone": "+1 5940998064",
+            "email": "tinomukuya1@gmail.com",
+            "linkedin": "linkedin.com/in/ronald-tino-027a6122b"
+        },
+        "summary": "A proactive and results-driven engineer transitioning to a Cloud Engineering role, bringing a strong foundation in RF engineering and IT, and proven ability to design, develop, and deploy cloud applications. Eager to leverage my expertise in AWS services, automation, and infrastructure as code to contribute to innovative and scalable cloud solutions, while focusing on optimizing business processes.",
+        "skills": {
+            "cloud": [
+                "AWS (EC2, Lambda, S3, IAM, DynamoDB, API Gateway, CloudWatch, Amplify, Route 53, CloudFront, SQS, SNS)",
+                "Serverless Architectures"
+            ],
+            "devops": [
+                "Infrastructure as Code (Terraform, GitHub Actions)",
+                "CI/CD Concepts",
+                "Version Control (Git)",
+                "Containerization (Docker - mention if any exposure)"
+            ],
+            "programming": [
+                "Python",
+                "Bash",
+                "JavaScript",
+                "SQL",
+                "HTML",
+                "CSS"
+            ],
+            "other": [
+                "Network Infrastructure",
+                "Automation",
+                "Problem-solving",
+                "Analytical Abilities",
+                "Communication",
+                "Teamwork",
+                "Agile Methodologies",
+                "Technical Troubleshooting"
+            ]
+        },
+        "cloud_projects": [{
+                "name": "Full-Stack Ride-Sharing Application",
+                "description": "Developed a comprehensive ride-sharing application using AWS Amplify for hosting, Cognito for authentication, Lambda for serverless logic, DynamoDB for data storage, API Gateway for secure endpoints, and IAM for role management. Integrated GitHub for version control and AWS Cloudwatch for function logging and monitoring."
+            },
+            {
+                "name": "Serverless Calculator Application",
+                "description": "Built a serverless web calculator application on AWS using Amplify for hosting, Lambda (Python) for backend calculations, API Gateway for secure endpoints, and DynamoDB for data storage. Configured IAM roles for secure access."
+            },
+            {
+                "name": "Cloud Resume Challenge Website",
+                "description": "Successfully completed the Cloud Resume Challenge, utilizing AWS services like S3 for hosting, CloudFront for content delivery, Route 53 for DNS management, Lambda and API Gateway for dynamic functionality, DynamoDB for visitor tracking, and IAM for secure roles. Implemented Infrastructure as Code (Terraform) and CI/CD pipelines (GitHub Actions)."
+            },
+            {
+                "name": "Content Library Website with E-commerce Integration",
+                "description": "Implemented a content library website for a client that integrated content from YouTube with an e-commerce shopify store showcasing ability to integrate front end and back end functionality."
+            }
+        ],
+        "employment_history": [{
+                "title": "Contractor",
+                "company": "Mojalands",
+                "dates": "03/2024-Current",
+                "description": [
+                    "Assisting in the preparation of the cloud infrastructure for future scaling and contributing to strategic planning for cloud migration.",
+                    "Analyzing data flow processes to ensure a seamless migration of business-critical services to the cloud.",
+                    "Contributing to daily technical tasks while supporting overall business operations."
+                ]
+            },
+            {
+                "title": "Intern trainee at CM-Port",
+                "company": "CM-Port",
+                "dates": "05/2024 – 06/2024",
+                "description": [
+                    "Leveraged knowledge of communication technologies to understand automated systems using 5G.",
+                    "Gained practical insights into port logistics, applying theoretical knowledge into a real-world setting."
+                ]
+            },
+            {
+                "title": "Project research assistant",
+                "company": "SUS Shanghai",
+                "dates": "12/2021 - 05/2022",
+                "description": [
+                    "Collaborated with multiple stakeholders to predict daily waste tonnage and potential power output for a new waste-to-energy plant.",
+                    "Conducted thorough research, analyzed data, and presented findings to enable management to make informed decisions."
+                ]
+            },
+            {
+                "title": "IT Intern",
+                "company": "Telecel",
+                "dates": "09/2017 - 12/2017",
+                "description": [
+                    "Quickly resolved complex technical issues, gaining experience with the daily applications of communication technologies.",
+                    "Gained experience with teamwork and adherence to company protocols."
+                ]
+            }
+        ],
+        "education_and_certifications": {
+            "education": [{
+                    "degree": "Master of Communication Engineering",
+                    "university": "Dalian Maritime University",
+                    "dates": "Sep 2022 – Jun 2024"
+                },
+                {
+                    "degree": "Bachelor's Information and communication engineering",
+                    "university": "Nanjing University of post and telecommunication",
+                    "dates": "Sep 2018 – Jun 2022"
+                }
+            ],
+            "certifications": [
+                "AWS Certified Cloud Practitioner (CCP)",
+                "AWS Certified Solutions Architect - Associate (SAA)",
+                "Currently studying for Cisco Certified Network Associate (CCNA) and Terraform certifications."
+            ]
+        },
+        "references": "Available upon request."
+    }
+}
