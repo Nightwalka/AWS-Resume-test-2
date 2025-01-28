@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cloud Resume Challenge Journey</title>
+    <title>Weather Dashboard Journey</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,42 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .highlight-code {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            display: block;
+            /* Added to fix the issue */
+        }
+        
+        .terminal-like {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+            display: block;
+            /* Added to fix the issue */
+        }
+        
+        body {
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+        }
+        
+        header.intro-header {
+            margin-top: 0;
+            /*Remove the margin top from the header element*/
+            padding-top: 0;
+            /* Remove any default padding*/
+        }
+    </style>
 
 </head>
 
@@ -66,18 +102,15 @@
         </div>
         <!-- /.container -->
     </nav>
-
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/post-bg1.jpg')">
+    <header class="intro-header" style="background-image: url('img/nnbbaa.jpg ')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Navigating the Cloud Resume Challenge: My Journey to a Cloud-Powered Portfolio</h1>
-                        <h2 class="subheading">
-                            My journey through the cloud resume challenge.
-                        </h2>
+                        <h1>Building a Sports Data Lake on AWS with S3, Glue, and Athena (VS Code Edition)</h1>
+                        <h2 class="subheading">My journey in creating a data lake to analyze NBA player data, while utilizing VS Code's AWS integration</h2>
                         <span class="meta">Created by <a href="#">Ron-tino</a> on January 04, 2025</span>
                     </div>
                 </div>
@@ -90,117 +123,596 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>
-                        My journey into the world of cloud technologies has been one of continuous learning and adaptation. With a background in communication engineering focused on microwave and electromagnetic wave theory, I initially designed tangible solutions, and over
-                        time, I recognized the transformative power of cloud computing and the need to pivot my skillset toward this dynamic field.
-                    </p>
-
-                    <p>This journey isn't just about pivoting into the field, it's also about validation and showing competence. That's why when I found out about the Cloud Resume Challenge by Forrest Brazeal, I saw a perfect way to demonstrate my skills
-                        and accelerate my learning journey. This project was a hands-on experience with real world AWS services, and it's the site that you're reading now.</p>
-
-                    <h2>About This Project</h2>
                     <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/logo-cloudd.png" alt="AWS Amplify" width="750" class="tutorial-image">
+                        <img src="img/nba-analytics.png" alt="AWS Amplify" width="750" class="tutorial-image">
                     </div>
                     <p>
-                        The Cloud Resume Challenge seemed like an exciting way to showcase and deepen my skills in cloud computing and serverless architectures. Building upon my AWS Certified Cloud Practitioner (CCP) certification, I embarked on this challenge to create a cloud-powered
-                        portfolio website that you see here. This project required me to get into the weeds with various AWS services, including S3 for hosting, CloudFront for HTTPS, DynamoDB for data storage, and AWS Lambda for serverless functions.
-                        Additionally, I utilized Terraform for Infrastructure as Code (IaC), which helped to ensure consistency and scalability in my setup.
+                        In this blog post, we'll walk through building a data lake on AWS to analyze NBA player data. We'll be using Amazon S3 for storage, AWS Glue for data cataloging, and AWS Athena for querying. The unique part? Instead of using the AWS CLI in Cloud Shell,
+                        we'll leverage VS Code’s AWS integration for a more streamlined development experience. This project is perfect for anyone looking to get hands-on with AWS data services, learn more about data lake architecture, and work directly
+                        with real data. Let's get started!
                     </p>
+                    <h2 style="color:#18a3c4"> Project Overview</h2>
 
-
-                    <h2>Steps to Completion</h2>
-                    <p>The project had a number of steps, but below are the major sections I had to complete before being able to present the final result.</p>
-                    <ul>
-                        <li> Certification</li>
-                        <li>HTML</li>
-                        <li> CSS</li>
-                        <li> Static Website</li>
-                        <li> HTTPS</li>
-                        <li> DNS</li>
-                        <li> Javascript</li>
-                        <li> Database</li>
-                        <li> API</li>
-                        <li> Python</li>
-                        <li> Tests</li>
-                        <li>Infrastructure as Code</li>
-                        <li>Source Control</li>
-                        <li>CI/CD (Back end)</li>
-                        <li>CI/CD (Front end)</li>
-                        <li>Blog Post</li>
-                    </ul>
-                    <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/certs.png " alt="AWS Amplify" width="750" class="tutorial-image">
-                    </div>
-
-                    <h2> Detailed Steps</h2>
-
-
-                    <ol>
-                        <li> <b>Laying the Foundation with AWS Certifications:</b>
-                            <p>
-                                My journey began with earning the AWS Certified Cloud Practitioner (CCP) certification in January 2024. This certification provided a foundational understanding of cloud concepts and AWS services, which set the stage for my more complex projects, including
-                                the pursuit of the AWS Certified Solutions Architect – Associate (SAA) certification.
-                            </p>
-                        </li>
-                        <li><b>Crafting the HTML and CSS Resume:</b>
-                            <p>
-                                Recognizing that the core of the challenge lay in cloud architecture, I focused on functionality over aesthetics when creating my resume. I found a template, made the necessary modifications to personalize it, and proceeded. Knowing that I could revisit
-                                this at a later stage gave me the time I needed to focus on the next steps of the challenge.
-                            </p>
-                        </li>
-                        <li> <b>Deploying to Amazon S3:</b>
-                            <p>
-                                Next, I deployed my resume website to Amazon S3. This crucial step enabled me to host a static website in the cloud and laid the groundwork for subsequent security and functionality enhancements.
-                            </p>
-                        </li>
-                        <li><b>Securing the Site with HTTPS, a Custom Domain, and Route 53:</b>
-                            <p>
-                                To complete the security implementation, I purchased my domain name through Namecheap. To secure the site and also improve it's reliability, I set up a custom domain with a hosted zone in Route 53, and used AWS Certificate Manager (ACM) to provision the
-                                necessary SSL certificates for HTTPS.
-                            </p>
-                        </li>
-                        <li> <b>Adding Dynamic Functionality with a JavaScript Visitor Counter:</b>
-                            <p>
-                                To move beyond a static webpage, I incorporated a visitor counter using JavaScript, adding a dynamic element to the website. This involved implementing an API to handle communication with the database.
-                            </p>
-                        </li>
-                        <li><b>Leveraging DynamoDB for Data Storage:</b>
-                            <p>
-                                For data storage, I utilized Amazon DynamoDB, which allowed me to create an API that interfaced with a Lambda function, written in Python, to update the visitor count seamlessly.
-                            </p>
-                        </li>
-                        <li> <b>Redeploying with Terraform</b>
-                            <p>
-                                With the implementation done I used the terraform configurations I had created to deploy the backend to AWS, this also gave me a good oppurtunity to test the infrastructure as code as I had to create the services again.
-                            </p>
-                        </li>
-                        <li> <b>Setting up a CI/CD Pipeline with GitHub Actions:</b>
-                            <p>
-                                To fully automate the process, a CI/CD pipeline was set up using GitHub Actions, which streamlined testing and deployment of updates to my portfolio automatically. This streamlined development workflow makes updates to the application seamless. I used
-                                two workflow files, one for the back end and one for the front end, with instructions on where to deploy the changes.
-                            </p>
-                        </li>
-                    </ol>
-
-                    <h2> Architecture Overview</h2>
-                    <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/resume.png " alt="AWS Amplify" width="750" class="tutorial-image">
-                    </div>
-                    <h2> Final Thoughts</h2>
                     <p>
-                        The Cloud Resume Challenge was a turning point in my cloud computing journey. It provided me with invaluable hands-on experience with various AWS services, a solid foundation in IaC, and a practical understanding of DevOps practices. I’m excited to use
-                        these newly gained skills and also apply them to my current Master’s program in CS with a concentration in enterprise and cloud computing.
+                        Our data lake will follow this workflow:
                     </p>
-
-                    <h2> Find Me</h2>
-
-                    <ul>
-                        <li> <a href="www.ron-tino.sitee">Link to Cloud Portfolio</a></li>
-                        <li> <a href="linkedin.com/in/ronald-tino-027a6122b">Find me on LinkedIn</a></li>
-                        <li><a href="https://github.com/Nightwalka/AWS-Resume-test-2.git">GitHub Repository</a></li>
+                    <ul style="color:#000000">
+                        <li><strong>Data Storage (S3):</strong> Raw NBA player data in JSON format will be stored in an S3 bucket.</li>
+                        <li><strong>Data Cataloging (Glue):</strong> AWS Glue will crawl the S3 bucket to infer the schema and create a metadata catalog, making it queryable.</li>
+                        <li><strong>Data Querying (Athena):</strong> AWS Athena will query the data in S3 using the metadata catalog defined by Glue, allowing us to explore the data with SQL.</li>
                     </ul>
 
+
+                    <h2 style="color:#18a3c4">Detailed Step-by-Step Guide</h2>
+
+                    <h3 style="color:#18a3c4">Step 1: Setting Up Your Development Environment with VS Code and AWS</h3>
+
+                    <p>Before we dive in, make sure you have:</p>
+
+                    <ul style="color:#000000">
+                        <li><strong>VS Code:</strong> Download and install VS Code if you haven't already.</li>
+                        <li><strong>AWS Toolkit for VS Code:</strong> Install the AWS Toolkit extension in VS Code.</li>
+                        <li><strong>AWS Credentials:</strong> Configure your AWS credentials within the AWS Toolkit. This allows VS Code to interact with your AWS account securely.</li>
+                        <li><strong>Python 3.x:</strong> Python 3.x installed in your development environment, and VS code set up to use the relevant python environment.</li>
+                        <li><strong>AWS Account:</strong> An active AWS account.</li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">Step 2: Create Python Project Structure</h3>
+                    <ul style="color:#000000">
+                        <li> Create a new directory for your project and name it something relevant, like `nba-data-lake`.</li>
+                        <li>Inside that directory, create a new directory named `src`. This is where you will store your python scripts.</li>
+                        <li>Create a new file called `setup_nba_datalake.py` inside the `src` folder. This will house the script to create our S3 bucket, set up Glue, and configure Athena.</li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">Step 3: The Python Script (`setup_nba_datalake.py`)</h3>
+
+                    <p>Here’s the Python code. Copy this into your `setup_nba_datalake.py` file:</p>
+                    <pre class="highlight-code">
+                        <code>
+import os
+import json
+import boto3
+import requests
+import time
+from dotenv import load_dotenv
+load_dotenv()
+
+# AWS Configurations (Environment variables)
+region = os.getenv("AWS_REGION")
+bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
+glue_database_name = os.getenv("AWS_GLUE_DATABASE_NAME")
+athena_output_location = os.getenv("AWS_ATHENA_OUTPUT_LOCATION")
+nba_api_key = os.getenv("NBA_API_KEY")
+
+
+# Create AWS clients
+s3_client = boto3.client('s3', region_name=region)
+glue_client = boto3.client('glue', region_name=region)
+athena_client = boto3.client('athena', region_name=region)
+
+
+# Function to create S3 bucket
+def create_s3_bucket():
+    try:
+        s3_client.head_bucket(Bucket=bucket_name)
+        print(f"Bucket {bucket_name} exists.")
+    except:
+        print(f"Creating bucket {bucket_name}")
+        try:
+            if region == "us-east-1":
+                s3_client.create_bucket(Bucket=bucket_name)
+            else:
+                s3_client.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={'LocationConstraint': region})
+
+            print(f"Successfully created bucket {bucket_name}")
+        except Exception as e:
+            print(f"Error creating bucket: {e}")
+
+# Function to create Glue database
+def create_glue_database():
+    try:
+        glue_client.get_database(Name=glue_database_name)
+        print(f"Glue database {glue_database_name} exists.")
+    except:
+        print(f"Creating glue database {glue_database_name}.")
+        try:
+            glue_client.create_database(
+                DatabaseInput={
+                'Name': glue_database_name,
+                'Description': 'Glue database for NBA data lake'
+                }
+            )
+            print(f"Successfully created glue database {glue_database_name}")
+        except Exception as e:
+            print(f"Error creating glue database: {e}")
+
+
+# Function to fetch data from the API
+def fetch_nba_data():
+    api_url = f"https://api.sportsdata.io/v3/nba/scores/json/Players?key={nba_api_key}"
+    try:
+      response = requests.get(api_url)
+      response.raise_for_status()
+      return response.json()
+    except requests.exceptions.RequestException as e:
+      print(f"Error fetching NBA data from API: {e}")
+      return None
+
+
+# Function to upload data to S3
+def upload_data_to_s3(data):
+    try:
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key="raw-data/nba_players.json",
+            Body=json.dumps(data),
+            ContentType='application/json'
+        )
+        print("Successfully uploaded NBA player data to S3.")
+    except Exception as e:
+        print(f"Error uploading data to S3: {e}")
+
+# Function to create glue table
+def create_glue_table():
+    try:
+        glue_client.get_table(DatabaseName=glue_database_name, Name="nba_players")
+        print("Glue table nba_players already exists")
+    except:
+            try:
+                    glue_client.create_table(
+                         DatabaseName=glue_database_name,
+                           TableInput={
+                             'Name': 'nba_players',
+                             'Description': 'NBA player data table',
+                             'StorageDescriptor': {
+                               'Columns': [
+                                 {'Name': 'PlayerID', 'Type': 'int'},
+                                 {'Name': 'FirstName', 'Type': 'string'},
+                                 {'Name': 'LastName', 'Type': 'string'},
+                                 {'Name': 'Position', 'Type': 'string'},
+                                 {'Name': 'Team', 'Type': 'string'},
+                                 {'Name': 'BirthCity', 'Type': 'string'},
+                                 {'Name': 'BirthState', 'Type': 'string'},
+                                 {'Name': 'College', 'Type': 'string'},
+                                 {'Name': 'Jersey', 'Type': 'string'}
+                               ],
+                               'Location': f's3://{bucket_name}/raw-data/',
+                                'InputFormat': 'org.apache.hadoop.mapred.TextInputFormat',
+                                'OutputFormat': 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat',
+                                'SerdeInfo': {
+                                 'Name': 'jsonSerDe',
+                                 'SerializationLibrary': 'org.openx.data.jsonserde.JsonSerDe',
+                                    'Parameters': {
+                                        'paths': 'PlayerID,FirstName,LastName,Position,Team,BirthCity,BirthState,College,Jersey'
+                                        }
+                                 }
+                             },
+                             'TableType': 'EXTERNAL_TABLE'
+                         }
+                )
+                    print("Successfully created glue table nba_players")
+            except Exception as e:
+                    print(f"Error creating glue table: {e}")
+# Function to configure Athena
+def configure_athena():
+    try:
+        athena_client.get_query_execution(QueryExecutionId='test-query-id')
+    except:
+        try:
+            print("Setting up Athena output location if it does not exist")
+            athena_client.create_named_query(
+            Name='TestQuery',
+            Database=glue_database_name,
+            QueryString=f"SELECT * FROM nba_players limit 10;",
+            Description='Test query for nba_players table',
+            ResultConfiguration={'OutputLocation': athena_output_location}
+            )
+            print("Successfully configured athena")
+        except Exception as e:
+            print(f"Error creating Athena location: {e}")
+
+def main():
+    create_s3_bucket()
+    time.sleep(5)
+    nba_data = fetch_nba_data()
+    if nba_data:
+      upload_data_to_s3(nba_data)
+      create_glue_database()
+      create_glue_table()
+      configure_athena()
+    else:
+      print("Failed to fetch NBA data")
+
+
+if __name__ == "__main__":
+    main()
+                        </code>
+                    </pre>
+                    <h3 style="color:#18a3c4">Step 4: Setting Up Environment Variables (`.env` file):</h3>
+
+                    <ul style="color:#000000">
+                        <li>Create a file named `.env` in the root of your project (`nba-data-lake`).</li>
+                        <li>Add the following environment variables, replacing the placeholders with your actual values:</li>
+                        <pre class="terminal-like">
+                        <code>
+AWS_REGION=your-aws-region   # e.g., us-east-1
+AWS_S3_BUCKET_NAME=your-unique-bucket-name  # Must be unique globally
+AWS_GLUE_DATABASE_NAME=your-glue-database-name # A name for your glue database
+AWS_ATHENA_OUTPUT_LOCATION=s3://your-unique-bucket-name/athena-output  # Output location for Athena query results, including athena-output folder
+NBA_API_KEY=your-sportsdata-io-api-key
+                        </code>
+                     </pre>
+                        <li> Replace the placeholders with values unique to your environment, remember to create a unique bucket name for s3, and you must create a unique athena output folder. Also, obtain your API key from the sportsdata.io web page.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Step 5: Running the Script:</h3>
+
+                    <ul style="color:#000000">
+                        <li>Open the `setup_nba_datalake.py` file in VS Code.</li>
+                        <li>Ensure that the correct Python environment is selected within VS code, by selecting the python environment.</li>
+                        <li> Run the script from your terminal: `python src/setup_nba_datalake.py`.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Step 6: Verify the Resources</h3>
+                    <ul style="color:#000000">
+                        <li><strong>S3:</strong> Go to the AWS console and navigate to the S3 service, check to see if the bucket was created and if the json file is inside the raw data folder.</li>
+                        <li><strong>Glue:</strong> Go to the AWS console and navigate to the Glue service, check to see if the database and the table was created.</li>
+                        <li><strong>Athena:</strong> Go to the AWS console and navigate to the Athena service and run a `select * from table` query to see if all of the data is available for query.</li>
+                    </ul>
+                    <h3 style="color:#1eaed2">Step 7: Clean Up Resources</h3>
+                    <p>If you wish to delete the resources created use the following script:</p>
+
+                    <pre class="highlight-code">
+                        <code>
+import boto3
+import os
+import time
+from dotenv import load_dotenv
+load_dotenv()
+
+# AWS Configurations
+region = os.getenv("AWS_REGION")
+bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
+glue_database_name = os.getenv("AWS_GLUE_DATABASE_NAME")
+
+# Create AWS clients
+s3_client = boto3.client('s3', region_name=region)
+glue_client = boto3.client('glue', region_name=region)
+athena_client = boto3.client('athena', region_name=region)
+
+
+# Function to delete S3 bucket and its contents
+def delete_s3_bucket():
+    try:
+        print(f"Deleting all objects in the bucket {bucket_name}")
+        response = s3_client.list_objects_v2(Bucket=bucket_name)
+        if 'Contents' in response:
+            for obj in response['Contents']:
+                s3_client.delete_object(Bucket=bucket_name, Key=obj['Key'])
+                print(f"Deleted object {obj['Key']} in bucket {bucket_name}")
+        print(f"Deleting the bucket {bucket_name}")
+        s3_client.delete_bucket(Bucket=bucket_name)
+        print(f"Successfully deleted bucket {bucket_name}")
+    except Exception as e:
+        print(f"Error deleting S3 bucket: {e}")
+# Function to delete glue table
+def delete_glue_table():
+    try:
+        print(f"Deleting the table nba_players in {glue_database_name}")
+        glue_client.delete_table(DatabaseName=glue_database_name, Name='nba_players')
+        print(f"Successfully deleted table nba_players in {glue_database_name}")
+    except Exception as e:
+        print(f"Error deleting glue table: {e}")
+# Function to delete Glue database
+def delete_glue_database():
+    try:
+         print(f"Deleting the database {glue_database_name}")
+         glue_client.delete_database(Name=glue_database_name)
+         print(f"Successfully deleted database {glue_database_name}")
+    except Exception as e:
+         print(f"Error deleting glue database {e}")
+# Function to delete Athena output location
+def delete_athena_output():
+    try:
+        print("Deleting Athena query results")
+        response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix="athena-output/")
+        if 'Contents' in response:
+            for obj in response['Contents']:
+                s3_client.delete_object(Bucket=bucket_name, Key=obj['Key'])
+                print(f"Deleted athena output object {obj['Key']} in bucket {bucket_name}")
+            print("Succesfully deleted the athena output folder")
+        else:
+           print("No athena output folder found")
+    except Exception as e:
+          print(f"Error deleting athena output : {e}")
+def main():
+    delete_glue_table()
+    time.sleep(5)
+    delete_glue_database()
+    delete_athena_output()
+    time.sleep(5)
+    delete_s3_bucket()
+
+if __name__ == "__main__":
+    main()
+                        </code>
+                     </pre>
+                    <ul style="color:#030303">
+                        <li>Create a new file in the src folder and name it `delete_resources.py`.</li>
+                        <li>Copy the above python code into that file and run it.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Differences from the Original Tutorial</h3>
+                    <ul style="color:#000000">
+                        <li><strong>VS Code instead of Cloud Shell:</strong> You ran the python script in VS Code rather than the AWS Cloud Shell. This provides a local development environment with all of your dependencies pre-installed. This is different
+                            from the cloud shell environment which does not retain its environment state from session to session.</li>
+                        <li><strong>Environment Variables:</strong> Instead of hardcoding AWS configurations and API keys in the code, this uses environment variables. Environment variables increase the security of your programs, and keep your API keys secure
+                            and out of your publicly available code.</li>
+                        <li><strong>Local Execution:</strong> The project code is run from your local machine instead of a cloud instance.</li>
+                        <li><strong>Resource Deletion</strong>: You created a separate resource deletion script, rather than having a combined script.</li>
+                    </ul>
+                    <h2 style="color:#18a3c4">Python Code Explanation</h2>
+
+                    <p>Okay, let's break down this Python script line by line, explaining its purpose, the AWS services it uses, and the overall data flow.</p>
+
+                    <pre class="highlight-code">
+                        <code>
+import boto3
+import json
+import time
+import requests
+from dotenv import load_dotenv
+import os
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`import boto3`: Imports the AWS SDK for Python, allowing interaction with AWS services.</li>
+                        <li>`import json`: Imports the json library for working with JSON data.</li>
+                        <li>`import time`: Imports the time library for adding pauses (like `time.sleep`).</li>
+                        <li>`import requests`: Imports the requests library for making HTTP calls to APIs.</li>
+                        <li>`from dotenv import load_dotenv`: Imports the `load_dotenv` function to load environment variables from a `.env` file.</li>
+                        <li>`import os`: Imports the `os` library for interacting with the operating system (including environment variables).</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+# Load environment variables from .env file
+load_dotenv()
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`load_dotenv()`: Loads environment variables from a `.env` file into the script's environment. This is used to store sensitive information such as the API keys</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+# AWS configurations
+region = os.getenv("AWS_REGION")
+bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
+glue_database_name = os.getenv("AWS_GLUE_DATABASE_NAME")
+athena_output_location = os.getenv("AWS_ATHENA_OUTPUT_LOCATION")
+nba_api_key = os.getenv("NBA_API_KEY")
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`region = os.getenv("AWS_REGION")`: Sets the default AWS region from environment variables.</li>
+                        <li>`bucket_name = os.getenv("AWS_S3_BUCKET_NAME")`: Sets a unique S3 bucket name from environment variables.</li>
+                        <li>`glue_database_name = os.getenv("AWS_GLUE_DATABASE_NAME")`: Sets a default AWS Glue database name from environment variables.</li>
+                        <li>`athena_output_location = os.getenv("AWS_ATHENA_OUTPUT_LOCATION")`: Creates the S3 path for Athena query results from environment variables.</li>
+                        <li>`nba_api_key = os.getenv("NBA_API_KEY")`: Retrieves the NBA_API_KEY from environment variables.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+# Create AWS clients
+s3_client = boto3.client("s3", region_name=region)
+glue_client = boto3.client("glue", region_name=region)
+athena_client = boto3.client("athena", region_name=region)
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`s3_client = boto3.client("s3", region_name=region)`: Creates an S3 client object to interact with AWS S3.</li>
+                        <li>`glue_client = boto3.client("glue", region_name=region)`: Creates a Glue client object to interact with AWS Glue.</li>
+                        <li>`athena_client = boto3.client("athena", region_name=region)`: Creates an Athena client object to interact with AWS Athena.</li>
+                    </ul>
+
+                    <pre class="highlight-code">
+                        <code>
+def create_s3_bucket():
+    """Create an S3 bucket for storing sports data."""
+    try:
+        if region == "us-east-1":
+            s3_client.create_bucket(Bucket=bucket_name)
+        else:
+            s3_client.create_bucket(
+                Bucket=bucket_name,
+                CreateBucketConfiguration={"LocationConstraint": region},
+            )
+        print(f"S3 bucket '{bucket_name}' created successfully.")
+    except Exception as e:
+        print(f"Error creating S3 bucket: {e}")
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`def create_s3_bucket()`: Defines a function to create an S3 bucket.</li>
+                        <li>`try`: Starts a try block to handle any errors that occur during S3 bucket creation.</li>
+                        <li>`if region == "us-east-1"`: Checks if the region is `us-east-1` to avoid specifying the region during creation.
+                            <ul>
+                                <li>`s3_client.create_bucket(Bucket=bucket_name)`: Creates an S3 bucket in `us-east-1`.</li>
+                            </ul>
+                        </li>
+                        <li>`else`: if the region is not `us-east-1`, specify the location during creation.
+                            <ul>
+                                <li>`s3_client.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={"LocationConstraint": region})`: Creates an S3 bucket with the specified location constraint (for other AWS regions).</li>
+                            </ul>
+                        </li>
+                        <li>`print(f"S3 bucket '{bucket_name}' created successfully.")`: Prints a success message if the bucket is created.</li>
+                        <li>`except Exception as e`: Catches any exceptions during bucket creation.</li>
+                        <li>`print(f"Error creating S3 bucket: {e}")`: Prints an error message if bucket creation fails.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+def create_glue_database():
+    """Create a Glue database for the data lake."""
+    try:
+        glue_client.create_database(
+            DatabaseInput={
+                "Name": glue_database_name,
+                "Description": "Glue database for NBA data lake.",
+            }
+        )
+        print(f"Glue database '{glue_database_name}' created successfully.")
+    except Exception as e:
+        print(f"Error creating Glue database: {e}")
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`def create_glue_database()`: Defines a function to create an AWS Glue database.</li>
+                        <li>`try`: Starts a try block to catch errors during database creation.</li>
+                        <li>`glue_client.create_database(...)`: Creates an AWS Glue database with the given configurations (name and description).</li>
+                        <li>`print(f"Glue database '{glue_database_name}' created successfully.")`: Prints a success message if the database is created.</li>
+                        <li>`except Exception as e`: Catches any exceptions that may occur.</li>
+                        <li>`print(f"Error creating Glue database: {e}")`: Prints an error message if the database creation fails.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+def fetch_nba_data():
+    """Fetch NBA player data from sportsdata.io."""
+    try:
+        headers = {"Ocp-Apim-Subscription-Key": nba_api_key}
+        response = requests.get(f"https://api.sportsdata.io/v3/nba/scores/json/Players?key={nba_api_key}", headers=headers)
+        response.raise_for_status()  # Raise an error for bad status codes
+        print("Fetched NBA data successfully.")
+        return response.json()  # Return JSON response
+    except Exception as e:
+        print(f"Error fetching NBA data: {e}")
+        return []
+                        </code>
+                     </pre>
+                    <ul style="color:#000000">
+                        <li>`def fetch_nba_data()`: Defines a function to fetch NBA player data.</li>
+                        <li>`try`: Starts a try block to handle API call errors.</li>
+                        <li>`headers = {"Ocp-Apim-Subscription-Key": api_key}`: Sets the API key in the HTTP header.</li>
+                        <li>`response = requests.get(f"https://api.sportsdata.io/v3/nba/scores/json/Players?key={nba_api_key}", headers=headers)`: Makes an HTTP GET request to the Sportsdata.io API endpoint.</li>
+                        <li>`response.raise_for_status()`: Raises an HTTPError for bad responses (4xx or 5xx status codes).</li>
+                        <li>`print("Fetched NBA data successfully.")`: Prints a success message.</li>
+                        <li>`return response.json()`: Returns the JSON response.</li>
+                        <li>`except Exception as e`: Catches any exceptions during API call.</li>
+                        <li>`print(f"Error fetching NBA data: {e}")`: Prints an error if the API call fails.</li>
+                        <li>`return []`: returns an empty list if the API call fails.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+def upload_data_to_s3(data):
+    """Upload NBA data to the S3 bucket."""
+    try:
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key="raw-data/nba_players.json",
+            Body=json.dumps(data),
+            ContentType='application/json'
+        )
+        print("Successfully uploaded NBA player data to S3.")
+    except Exception as e:
+        print(f"Error uploading data to S3: {e}")
+                        </code>
+                    </pre>
+                    <ul style="color:#000000">
+                        <li>`def upload_data_to_s3(data)`: Defines a function to upload data to S3.</li>
+                        <li>`try`: Starts a try block for error handling.</li>
+                        <li>`s3_client.put_object(...)`: Uploads the JSON data to the S3 bucket.</li>
+                        <li>`print("Successfully uploaded NBA player data to S3.")`: Prints a success message indicating the file location.</li>
+                        <li>`except Exception as e`: Catches exceptions during S3 upload.</li>
+                        <li>`print(f"Error uploading data to S3: {e}")`: Prints an error message if upload fails.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                        <code>
+    
+                            <code>
+                                def configure_athena():
+                                    """Set up Athena output location."""
+                                    try:
+                                        athena_client.start_query_execution(
+                                            QueryString="CREATE DATABASE IF NOT EXISTS nba_analytics",
+                                            QueryExecutionContext={"Database": glue_database_name},
+                                            ResultConfiguration={"OutputLocation": athena_output_location},
+                                        )
+                                        print("Athena output location configured successfully.")
+                                    except Exception as e:
+                                        print(f"Error configuring Athena: {e}")
+                                                        </code>
+                                                     </pre>
+                    <ul style="color:#000000">
+                        <li>`def configure_athena()`: Defines a function to setup Athena configuration.</li>
+                        <li>`try`: Starts a try block for handling any exceptions.</li>
+                        <li>`athena_client.start_query_execution(...)`: Configures Athena by creating the specified database and output location.</li>
+                        <li>`print("Athena output location configured successfully.")`: Prints a success message.</li>
+                        <li>`except Exception as e`: Catches exceptions during Athena configuration.</li>
+                        <li>`print(f"Error configuring Athena: {e}")`: Prints an error message.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                                                        <code>
+                                # Main workflow
+                                def main():
+                                    print("Setting up data lake for NBA sports analytics...")
+                                    create_s3_bucket()
+                                    time.sleep(5)  # Ensure bucket creation propagates
+                                    create_glue_database()
+                                    nba_data = fetch_nba_data()
+                                    if nba_data:  # Only proceed if data was fetched successfully
+                                        upload_data_to_s3(nba_data)
+                                    create_glue_table()
+                                    configure_athena()
+                                    print("Data lake setup complete.")
+                                                        </code>
+                                                     </pre>
+                    <ul style="color:#0b0b0b">
+                        <li>`def main()`: Defines the main function of the program to manage the workflow.</li>
+                        <li>`print("Setting up data lake for NBA sports analytics...")`: Prints the start message.</li>
+                        <li>`create_s3_bucket()`: Calls the function to create the S3 bucket.</li>
+                        <li>`time.sleep(5)`: Adds a 5 second delay to allow the S3 bucket creation to take effect.</li>
+                        <li>`create_glue_database()`: Calls the function to create a Glue database.</li>
+                        <li>`nba_data = fetch_nba_data()`: Calls the function to fetch NBA data.</li>
+                        <li>`if nba_data`: Checks if data is present before proceeding.
+                            <ul>
+                                <li> `upload_data_to_s3(nba_data)`: Calls the function to upload the NBA data to the S3 bucket, if the data was successfully fetched.</li>
+                            </ul>
+                        </li>
+                        <li>`create_glue_table()`: Calls the function to create a Glue table.</li>
+                        <li>`configure_athena()`: Calls the function to configure Athena.</li>
+                        <li>`print("Data lake setup complete.")`: Prints the completion message.</li>
+                    </ul>
+                    <pre class="highlight-code">
+                                                        <code>
+                                if __name__ == "__main__":
+                                    main()
+                                                        </code>
+                                                     </pre>
+                    <ul style="color:#111111">
+                        <li>`if __name__ == "__main__":`: Makes sure that the main function is only called when this script is executed directly.</li>
+                        <li>`main()`: Calls the main function to run the main workflow when this script is directly executed.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Data Flow</h3>
+                    <ul style="color:#111212">
+                        <li><strong>Environment Setup:</strong> The script starts by loading environment variables.</li>
+                        <li><strong>AWS Setup:</strong> It creates connections to AWS S3, AWS Glue, and AWS Athena services.</li>
+                        <li><strong>S3 Bucket Creation:</strong> Creates an S3 bucket for data storage.</li>
+                        <li><strong>Glue Database Creation:</strong> Creates a Glue database to organize data.</li>
+                        <li><strong>Data Fetching:</strong> Retrieves NBA player data using the Sportsdata.io API, using an API key.</li>
+                        <li><strong>Data Upload:</strong> Uploads the JSON data into the specified S3 bucket.</li>
+                        <li><strong>Glue Table Creation:</strong> Creates a table in the AWS Glue database referencing the S3 data.</li>
+                        <li><strong>Athena Setup:</strong> Configures Athena for querying data in S3.</li>
+                        <li><strong>Completion:</strong> Prints a message to indicate that the data lake is set up successfully.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Key AWS Services</h3>
+                    <ul style="color:#030303">
+                        <li><strong>Amazon S3 (Simple Storage Service):</strong> Used as the storage layer for raw NBA data and for Athena query results.</li>
+                        <li><strong>AWS Glue:</strong> Used as the metadata layer to create databases and tables over the raw data in S3.</li>
+                        <li><strong>Amazon Athena:</strong> Used to query the data stored in S3 and described by Glue tables.</li>
+                    </ul>
+                    <h3 style="color:#18a3c4">Data Flow</h3>
+                    <ul style="color:#070707">
+                        <li>Raw data is pulled from the Sportsdata.io API as JSON.</li>
+                        <li>The JSON data is saved to the specified S3 bucket.</li>
+                        <li>AWS Glue creates an external table definition using the raw S3 data.</li>
+                        <li>AWS Athena is then setup so that it can query and use the table that was created in Glue.</li>
+                    </ul>
+
+                    <p>This detailed explanation should provide a good understanding of the script, the AWS services it uses, and the flow of data throughout the application.</p>
                 </div>
             </div>
         </div>
@@ -217,41 +729,41 @@
                         <li>
                             <a href="https://x.com/Nightwalka11" target="_blank">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.youtube.com/@Ron_can_cloud" target="_blank">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
-                                </span>
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.ron-tino.site/" target="_blank">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
-                                </span>
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
+                                                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/Nightwalka" target="_blank">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/in/ronald-tino-027a6122b" target="_blank">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span>
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                                                </span>
                             </a>
                         </li>
                     </ul>
