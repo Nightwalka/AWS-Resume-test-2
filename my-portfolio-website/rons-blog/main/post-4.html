@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cloud Resume Challenge Journey</title>
+    <title>Weather Dashboard Journey</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,42 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .highlight-code {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            display: block;
+            /* Added to fix the issue */
+        }
+        
+        .terminal-like {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+            display: block;
+            /* Added to fix the issue */
+        }
+        
+        body {
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+        }
+        
+        header.intro-header {
+            margin-top: 0;
+            /*Remove the margin top from the header element*/
+            padding-top: 0;
+            /* Remove any default padding*/
+        }
+    </style>
 
 </head>
 
@@ -66,18 +102,15 @@
         </div>
         <!-- /.container -->
     </nav>
-
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/post-bg1.jpg')">
+    <header class="intro-header" style="background-image: url('img/basket.jpg ')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Navigating the Cloud Resume Challenge: My Journey to a Cloud-Powered Portfolio</h1>
-                        <h2 class="subheading">
-                            My journey through the cloud resume challenge.
-                        </h2>
+                        <h1>Building Your Own NBA Game Notification App with AWS: A Step-by-Step Guide</h1>
+                        <h2 class="subheading">My journey in creating a system that sends you game notifications directly to your email or phone.</h2>
                         <span class="meta">Created by <a href="#">Ron-tino</a> on January 04, 2025</span>
                     </div>
                 </div>
@@ -90,117 +123,272 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>
-                        My journey into the world of cloud technologies has been one of continuous learning and adaptation. With a background in communication engineering focused on microwave and electromagnetic wave theory, I initially designed tangible solutions, and over
-                        time, I recognized the transformative power of cloud computing and the need to pivot my skillset toward this dynamic field.
-                    </p>
-
-                    <p>This journey isn't just about pivoting into the field, it's also about validation and showing competence. That's why when I found out about the Cloud Resume Challenge by Forrest Brazeal, I saw a perfect way to demonstrate my skills
-                        and accelerate my learning journey. This project was a hands-on experience with real world AWS services, and it's the site that you're reading now.</p>
-
-                    <h2>About This Project</h2>
                     <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/logo-cloudd.png" alt="AWS Amplify" width="750" class="tutorial-image">
+                        <img src="img/nba.jpg" alt="AWS Amplify" width="750" class="tutorial-image">
                     </div>
+
                     <p>
-                        The Cloud Resume Challenge seemed like an exciting way to showcase and deepen my skills in cloud computing and serverless architectures. Building upon my AWS Certified Cloud Practitioner (CCP) certification, I embarked on this challenge to create a cloud-powered
-                        portfolio website that you see here. This project required me to get into the weeds with various AWS services, including S3 for hosting, CloudFront for HTTPS, DynamoDB for data storage, and AWS Lambda for serverless functions.
-                        Additionally, I utilized Terraform for Infrastructure as Code (IaC), which helped to ensure consistency and scalability in my setup.
+                        In this blog post, we'll walk you through creating a system that sends you game notifications directly to your email or phone. We'll be using an event-driven architecture on AWS, leveraging services like Lambda, SNS, and EventBridge. This project is perfect
+                        for those who want to learn how to use serverless technologies, interact with external APIs, and automate tasks in the cloud.
                     </p>
 
+                    <h2 style="color:#18a3c4"> Project Overview</h2>
 
-                    <h2>Steps to Completion</h2>
-                    <p>The project had a number of steps, but below are the major sections I had to complete before being able to present the final result.</p>
-                    <ul>
-                        <li> Certification</li>
-                        <li>HTML</li>
-                        <li> CSS</li>
-                        <li> Static Website</li>
-                        <li> HTTPS</li>
-                        <li> DNS</li>
-                        <li> Javascript</li>
-                        <li> Database</li>
-                        <li> API</li>
-                        <li> Python</li>
-                        <li> Tests</li>
-                        <li>Infrastructure as Code</li>
-                        <li>Source Control</li>
-                        <li>CI/CD (Back end)</li>
-                        <li>CI/CD (Front end)</li>
-                        <li>Blog Post</li>
+                    <p>
+                        Here's a breakdown of the system we’ll be building:
+                    </p>
+                    <ul style="color:#18a3c4">
+                        <li>Data Source: We'll be using a free API from Sportsdata.io to fetch NBA game data (scores, times, etc.).</li>
+                        <li>Code Execution: AWS Lambda will host the Python code that retrieves data from the API, processes it, and prepares it for notification.</li>
+                        <li>Notification System: We'll utilize AWS Simple Notification Service (SNS) to deliver messages to our chosen endpoints (email/SMS).</li>
+                        <li>Scheduling: AWS EventBridge will schedule the execution of our Lambda function at specified intervals.</li>
                     </ul>
-                    <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/certs.png " alt="AWS Amplify" width="750" class="tutorial-image">
-                    </div>
-
-                    <h2> Detailed Steps</h2>
-
-
-                    <ol>
-                        <li> <b>Laying the Foundation with AWS Certifications:</b>
-                            <p>
-                                My journey began with earning the AWS Certified Cloud Practitioner (CCP) certification in January 2024. This certification provided a foundational understanding of cloud concepts and AWS services, which set the stage for my more complex projects, including
-                                the pursuit of the AWS Certified Solutions Architect – Associate (SAA) certification.
-                            </p>
-                        </li>
-                        <li><b>Crafting the HTML and CSS Resume:</b>
-                            <p>
-                                Recognizing that the core of the challenge lay in cloud architecture, I focused on functionality over aesthetics when creating my resume. I found a template, made the necessary modifications to personalize it, and proceeded. Knowing that I could revisit
-                                this at a later stage gave me the time I needed to focus on the next steps of the challenge.
-                            </p>
-                        </li>
-                        <li> <b>Deploying to Amazon S3:</b>
-                            <p>
-                                Next, I deployed my resume website to Amazon S3. This crucial step enabled me to host a static website in the cloud and laid the groundwork for subsequent security and functionality enhancements.
-                            </p>
-                        </li>
-                        <li><b>Securing the Site with HTTPS, a Custom Domain, and Route 53:</b>
-                            <p>
-                                To complete the security implementation, I purchased my domain name through Namecheap. To secure the site and also improve it's reliability, I set up a custom domain with a hosted zone in Route 53, and used AWS Certificate Manager (ACM) to provision the
-                                necessary SSL certificates for HTTPS.
-                            </p>
-                        </li>
-                        <li> <b>Adding Dynamic Functionality with a JavaScript Visitor Counter:</b>
-                            <p>
-                                To move beyond a static webpage, I incorporated a visitor counter using JavaScript, adding a dynamic element to the website. This involved implementing an API to handle communication with the database.
-                            </p>
-                        </li>
-                        <li><b>Leveraging DynamoDB for Data Storage:</b>
-                            <p>
-                                For data storage, I utilized Amazon DynamoDB, which allowed me to create an API that interfaced with a Lambda function, written in Python, to update the visitor count seamlessly.
-                            </p>
-                        </li>
-                        <li> <b>Redeploying with Terraform</b>
-                            <p>
-                                With the implementation done I used the terraform configurations I had created to deploy the backend to AWS, this also gave me a good oppurtunity to test the infrastructure as code as I had to create the services again.
-                            </p>
-                        </li>
-                        <li> <b>Setting up a CI/CD Pipeline with GitHub Actions:</b>
-                            <p>
-                                To fully automate the process, a CI/CD pipeline was set up using GitHub Actions, which streamlined testing and deployment of updates to my portfolio automatically. This streamlined development workflow makes updates to the application seamless. I used
-                                two workflow files, one for the back end and one for the front end, with instructions on where to deploy the changes.
-                            </p>
-                        </li>
-                    </ol>
-
-                    <h2> Architecture Overview</h2>
-                    <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/resume.png " alt="AWS Amplify" width="750" class="tutorial-image">
-                    </div>
-                    <h2> Final Thoughts</h2>
                     <p>
-                        The Cloud Resume Challenge was a turning point in my cloud computing journey. It provided me with invaluable hands-on experience with various AWS services, a solid foundation in IaC, and a practical understanding of DevOps practices. I’m excited to use
-                        these newly gained skills and also apply them to my current Master’s program in CS with a concentration in enterprise and cloud computing.
+                        This project is event-driven, meaning that the schedule event will automatically trigger the workflow.
                     </p>
 
-                    <h2> Find Me</h2>
+                    <div style="display: flex; flex-direction: column; align-items:center;">
+                        <img src="img/game-d.png" alt="AWS Amplify" width="750" class="tutorial-image">
+                    </div>
 
-                    <ul>
-                        <li> <a href="www.ron-tino.sitee">Link to Cloud Portfolio</a></li>
-                        <li> <a href="linkedin.com/in/ronald-tino-027a6122b">Find me on LinkedIn</a></li>
-                        <li><a href="https://github.com/Nightwalka/AWS-Resume-test-2.git">GitHub Repository</a></li>
+                    <h2 style="color:#18a3c4">Detailed Step-by-Step Guide</h2>
+
+                    <h3 style="color:#000000">1. Setting up SNS Topic and Subscriptions:</h3>
+                    <ul style="color:#000000">
+                        <li><strong>Navigate to SNS:</strong> Go to the AWS Management Console and search for "SNS." Select "Simple Notification Service."</li>
+                        <li><strong>Create a Topic:</strong> In the left-hand menu, go to "Topics" and click "Create Topic."
+                            <ul>
+                                <li>Choose "Standard" type.</li>
+                                <li>Give your topic a name (e.g., "GD-topic" for Game Day).</li>
+                                <li>Leave the rest as default and click "Create Topic."</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subscribe to the Topic:</strong>
+                            <ul>
+                                <li>Select the created topic.</li>
+                                <li>Click "Create Subscription."</li>
+                                <li>Choose "Email" as the protocol and enter your email address.</li>
+                                <li>Click "Create Subscription."</li>
+                                <li>Check your email inbox for a subscription confirmation email and confirm your subscription.</li>
+                                <li>Refresh the subscription page in the AWS Console to see the confirmation status.</li>
+                            </ul>
+                        </li>
                     </ul>
 
+                    <h3 style="color:#18a3c4">2. Creating IAM Policies and Roles:</h3>
+                    <ul style="color:#000000">
+                        <li><strong>Navigate to IAM:</strong> Open a new tab and search for "IAM" (Identity and Access Management).</li>
+                        <li><strong>Create a Policy for SNS Access:</strong>
+                            <ul>
+                                <li>Go to "Policies" on the left-hand menu and click "Create Policy."</li>
+                                <li>Choose "JSON" tab.</li>
+                                <li>Copy the JSON policy from the provided Github repo <code>policies/GD-sns-policy.json</code> and paste it into the editor.</li>
+                                <li>Update the `Resource` value in the JSON policy with the ARN (Amazon Resource Name) of your SNS topic from Step 1 (make sure to put it in between the double quotes). This allows access to your specific topic.</li>
+                                <li>Click "Next", give the policy a name (e.g., "GD-SNS-policy"), and click "Create Policy."</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create a Role for Lambda:</strong>
+                            <ul>
+                                <li>Go to "Roles" on the left-hand menu and click "Create Role."</li>
+                                <li>Choose "AWS Service" and select "Lambda" as the service.</li>
+                                <li>Click "Next."</li>
+                                <li>Attach two policies to this role. Search for and select the following:
+                                    <ul>
+                                        <li>The `GD-SNS-policy` you just created.</li>
+                                        <li>`AWSLambdaBasicExecutionRole` (this is an AWS managed policy that allows Lambda to send logs to CloudWatch).</li>
+                                    </ul>
+                                </li>
+                                <li>Click "Next", give the role a name (e.g., "GD-Lambda-role"), and click "Create Role."</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">3. Creating the Lambda Function:</h3>
+                    <ul style="color:#000000">
+                        <li><strong>Navigate to Lambda:</strong> Go back to the AWS Management Console and search for "Lambda." Select "Lambda."</li>
+                        <li><strong>Create a Function:</strong>
+                            <ul>
+                                <li>Click "Create Function."</li>
+                                <li>Select "Author from scratch."</li>
+                                <li>Give your function a name (e.g., "GD-notifications").</li>
+                                <li>Choose "Python 3.x" as the runtime.</li>
+                                <li>Under "Permissions," choose "Use an existing role" and select the "GD-Lambda-role" you just created.</li>
+                                <li>Click "Create Function."</li>
+                            </ul>
+                        </li>
+                        <li><strong>Paste the Python Code:</strong>
+                            <ul>
+                                <li>Copy the code from the provided Github repo <code>source/GD-notifications/lambda_function.py</code> and paste it into the code editor in the Lambda console.</li>
+                                <li>Click "Deploy."</li>
+                            </ul>
+                        </li>
+                        <li><strong>Set Environment Variables:</strong>
+                            <ul>
+                                <li>Go to "Configuration" tab and select "Environment Variables."</li>
+                                <li>Click "Edit."</li>
+                                <li>Add two environment variables:
+                                    <ul>
+                                        <li><strong>Key:</strong> `NBA_API_KEY`, <strong>Value:</strong> Your API key from Sportsdata.io (blurred out in the video).</li>
+                                        <li><strong>Key:</strong> `SNS_TOPIC_ARN`, <strong>Value:</strong> The ARN of your SNS topic from step 1.</li>
+                                    </ul>
+                                </li>
+                                <li>Click "Save."</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">4. Understanding the Python Code:</h3>
+                    <p>Here's a breakdown of what the Python code does:</p>
+                    <ul style="color:#000000">
+                        <li>It starts with imports for various libraries like OS (for environment variables), JSON, urlib (for making HTTP requests), boto3 (for interacting with AWS services like SNS), and date.</li>
+                        <li>It gets environment variables for the API key and SNS topic ARN.</li>
+                        <li>It Initializes an SNS client using boto3.</li>
+                        <li>The code adjusts for central time by getting the current UTC time and converting it to central. This ensures that the game data is fetched for the current day in central time.</li>
+                        <li>Constructs API URL by adding in today's date and the API key from environment variables. This is how the script specifies which days games to fetch data for.</li>
+                        <li>It uses the URL lib library to make the request to the API.</li>
+                        <li>The JSON response is formatted and then a format\_game\_data function is called, which generates a readable message for each game.</li>
+                        <li>The format\_game\_data function that loops through the games to extract specific information like away team, home team, scores, and status. It then formats the data into a readable string for publishing to SNS, and includes quarter
+                            scores if they exist.</li>
+                        <li>Finally, the formatted message is published to the SNS topic along with the subject "NBA game scores."</li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">5. Testing the Lambda Function:</h3>
+                    <ul style="color:#000000">
+                        <li>In the Lambda console, select "Test" tab and create a new test event by clicking "Create new event".</li>
+                        <li>Leave the default settings and save the test event.</li>
+                        <li>Click "Test."</li>
+                        <li>Check your email to see if you received the game notifications.</li>
+                    </ul>
+
+                    <h3 style="color:#18a3c4">6. Scheduling the Lambda Function with EventBridge:</h3>
+                    <ul style="color:#000000">
+                        <li><strong>Navigate to EventBridge:</strong> Go back to the AWS Management Console and search for "EventBridge". Select the service.</li>
+                        <li><strong>Create a Rule:</strong>
+                            <ul>
+                                <li>Click "Create Rule".</li>
+                                <li>Give the rule a name (e.g., "GD-rule").</li>
+                                <li>Select "Schedule" as the rule type.</li>
+                                <li>Select “Reoccurring Schedule" under schedule type.</li>
+                                <li>Select "Cron-based schedule."</li>
+                                <li>Copy the cron expression from the video or use the following:
+                                    <pre class="terminal-like">
+                                        <code>
+                                        0 9-23/2,0-2/2 * * ? *
+                                         </code>
+                                    </pre> This will trigger the Lambda function to run every 2 hours from 9 AM to 11PM and then from 12AM to 2AM.</li>
+                                <li>Click "Next".</li>
+                                <li>Select "AWS Lambda" as the target type.</li>
+                                <li>Choose your Lambda function ("GD-notifications").</li>
+                                <li>Click "Next" Leave the defaults and click next and "Create Schedule".</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <h2 style="color:#18a3c4">Conclusion</h2>
+                    <p>
+                        Congratulations! You've built a fully automated NBA game notification system using AWS. You can now receive game updates on your email without lifting a finger. This project gives a great insight into event-driven architectures, working with external
+                        APIs, and using serverless services. Experiment with different cron schedules, explore other data points from the Sportsdata.io API, and extend this project to fit your specific interests!
+                    </p>
+
+                    <h2 style="color:#18a3c4">Python Code</h2>
+                    <pre class="highlight-code">
+                        <code>
+import os
+import json
+import urllib.request
+import boto3
+from datetime import datetime, timedelta, timezone
+
+def format_game_data(game):
+    status = game.get("Status", "Unknown")
+    away_team = game.get("AwayTeam", "Unknown")
+    home_team = game.get("HomeTeam", "Unknown")
+    final_score = f"{game.get('AwayTeamScore', 'N/A')}-{game.get('HomeTeamScore', 'N/A')}"
+    start_time = game.get("DateTime", "Unknown")
+    channel = game.get("Channel", "Unknown")
+    
+    # Format quarters
+    quarters = game.get("Quarters", [])
+    quarter_scores = ', '.join([f"Q{q['Number']}: {q.get('AwayScore', 'N/A')}-{q.get('HomeScore', 'N/A')}" for q in quarters])
+    
+    if status == "Final":
+        return (
+            f"Game Status: {status}\n"
+            f"{away_team} vs {home_team}\n"
+            f"Final Score: {final_score}\n"
+            f"Start Time: {start_time}\n"
+            f"Channel: {channel}\n"
+            f"Quarter Scores: {quarter_scores}\n"
+        )
+    elif status == "InProgress":
+        last_play = game.get("LastPlay", "N/A")
+        return (
+            f"Game Status: {status}\n"
+            f"{away_team} vs {home_team}\n"
+            f"Current Score: {final_score}\n"
+            f"Last Play: {last_play}\n"
+            f"Channel: {channel}\n"
+        )
+    elif status == "Scheduled":
+        return (
+            f"Game Status: {status}\n"
+            f"{away_team} vs {home_team}\n"
+            f"Start Time: {start_time}\n"
+            f"Channel: {channel}\n"
+        )
+    else:
+        return (
+            f"Game Status: {status}\n"
+            f"{away_team} vs {home_team}\n"
+            f"Details are unavailable at the moment.\n"
+        )
+
+def lambda_handler(event, context):
+    # Get environment variables
+    api_key = os.getenv("NBA_API_KEY")
+    sns_topic_arn = os.getenv("SNS_TOPIC_ARN")
+    sns_client = boto3.client("sns")
+    
+    # Adjust for Central Time (UTC-6)
+    utc_now = datetime.now(timezone.utc)
+    central_time = utc_now - timedelta(hours=6)  # Central Time is UTC-6
+    today_date = central_time.strftime("%Y-%m-%d")
+    
+    print(f"Fetching games for date: {today_date}")
+    
+    # Fetch data from the API
+    api_url = f"https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/{today_date}?key={api_key}"
+    print(today_date)
+     
+    try:
+        with urllib.request.urlopen(api_url) as response:
+            data = json.loads(response.read().decode())
+            print(json.dumps(data, indent=4))  # Debugging: log the raw data
+    except Exception as e:
+        print(f"Error fetching data from API: {e}")
+        return {"statusCode": 500, "body": "Error fetching data"}
+    
+    # Include all games (final, in-progress, and scheduled)
+    messages = [format_game_data(game) for game in data]
+    final_message = "\n---\n".join(messages) if messages else "No games available for today."
+    
+    # Publish to SNS
+    try:
+        sns_client.publish(
+            TopicArn=sns_topic_arn,
+            Message=final_message,
+            Subject="NBA Game Updates"
+        )
+        print("Message published to SNS successfully.")
+    except Exception as e:
+        print(f"Error publishing to SNS: {e}")
+        return {"statusCode": 500, "body": "Error publishing to SNS"}
+    
+    return {"statusCode": 200, "body": "Data processed and sent to SNS"}
+
+                         </code>
+                     </pre>
                 </div>
             </div>
         </div>
