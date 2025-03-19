@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A Beginner's Guide to Building Cloud Infrastructure with Terraform, Ansible, and AWS">
+    <meta name="description" content="Automating GitHub Issue to Jira Ticket Creation with Flask and Webhooks">
     <meta name="author" content="Ron-Tino">
 
-    <title>Building Your First Cloud Infrastructure: A Beginner's Guide with Terraform, Ansible, and AWS</title>
+    <title>DevOps Automation: From GitHub Issue to Jira Ticket with Python and Flask</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,6 +55,9 @@
         header.intro-header {
             margin-top: 0;
             padding-top: 0;
+            background-image: url('img/github-jira.jpg');
+            /Replace with your image / background-color: #777;
+            /Fallback color /
         }
     </style>
 
@@ -77,7 +79,6 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="index.html">Home</a>
@@ -96,15 +97,14 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="intro-header" style="background-image: url('img/terrra.jpg')">
+    <header class="intro-header" style="background-image: url('img/new/cloud-lambda.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-
-                        <h2>Building Your First Cloud Infrastructure: A Beginner's Guide with Terraform, Ansible, and AWS</h1>
-                            <h2 class="subheading">A step-by-step walkthrough for deploying a simple cloud infrastructure, even if you're a complete beginner.</h2>
-                            <span class="meta">Created by <a href="#">Ron-Tino</a> on February 08, 2025</span>
+                        <h1>DevOps Automation: From GitHub Issue to Jira Ticket with Python and Flask</h1>
+                        <h2 class="subheading">Bridging the gap between development and project management with a simple, automated solution.</h2>
+                        <span class="meta">Created by <a href="#">Ron-Tino</a> on March 18, 2025</span>
                     </div>
                 </div>
             </div>
@@ -116,573 +116,352 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
                     <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/weka-terraform-aws_og@2x-scaled.jpg" alt="AWS Amplify" width="750" class="tutorial-image">
+                        <img src="img/new/cloud.drawio (1).png" alt="GitHub Jira Integration" width="750" class="tutorial-image">
                     </div>
 
-                    <p>
-                        Welcome! If you're new to cloud computing, infrastructure as code, or automation, you're in the right place. In this guide, we'll walk through building a simple, yet powerful, cloud infrastructure on Amazon Web Services (AWS) using Terraform, Ansible,
-                        and a little bit of Bash scripting. Don't worry if you're not familiar with all these terms yet. We'll explain everything step-by-step, focusing on <i>why</i> we're doing each thing, so you can build a solid
-                        foundation for your cloud journey.
-                    </p>
+                    <p>In the fast-paced world of software development, efficiency is key. DevOps practices emphasize automation to streamline workflows, reduce manual effort, and improve collaboration. This post walks through a practical example of DevOps
+                        automation: integrating GitHub issues with Jira using a custom-built Python API, Flask, and webhooks. We'll see how a little bit of code can bridge the gap between development and project management, making life easier for everyone.</p>
 
-                    <p>
-                        Think of this project as your "Hello, World!" for the cloud. We'll be setting up:
-                    </p>
+                    <h2 style="color:#18a3c4">The Problem: Manual Handoffs are Slow</h2>
 
+                    <p>Imagine a scenario: Developers are working on a project hosted on GitHub. Testers (or other developers) find bugs and create issues on GitHub. A developer reviews the issue and decides it needs to be tracked in Jira (a popular project
+                        management tool). Manually creating a Jira ticket for every valid GitHub issue is tedious, error-prone, and time-consuming. This manual handoff creates a bottleneck.</p>
+
+                    <h2 style="color:#18a3c4">The Solution: Automation to the Rescue!</h2>
+
+                    <p>Our goal is to build a system where a simple comment on a GitHub issue ("<code>/jira</code>", in our example, but you can customize this) automatically creates a corresponding Jira ticket. This eliminates the manual copying and pasting,
+                        ensures consistency, and keeps everyone on the same page.</p>
+
+                    <h2 style="color:#18a3c4">The Tools of the Trade</h2>
+
+                    <p>We'll use a combination of tools to achieve this:</p>
                     <ul>
-                        <li><b>An S3 bucket:</b> Your own cloud storage space to keep track of your "infrastructure code."</li>
-                        <li><b>Two virtual servers (EC2 instances):</b> Think of these as your own computers in the cloud where you'll run your websites.</li>
-                        <li><b>Automatic website setup:</b> We'll use automation to install the software needed to run a simple game on those servers.</li>
+                        <li><strong>GitHub:</strong> The code repository and issue tracker.</li>
+                        <li><strong>Jira:</strong> The project management tool where we'll create tickets.</li>
+                        <li><strong>Python:</strong> Our programming language of choice.</li>
+                        <li><strong>Flask:</strong> A lightweight Python web framework for building our API. Think of Flask as a toolkit for making web applications.</li>
+                        <li><strong>AWS EC2:</strong> A virtual server (an instance) in the cloud where we'll deploy our Python application. You can use your local machine, but a cloud server like EC2 is good practice.</li>
+                        <li><strong>Webhooks:</strong> The magic that connects GitHub to our Python application. A webhook is like a notification system: when something happens on GitHub (a comment is made), GitHub sends a message to our application.</li>
                     </ul>
 
-                    <h2 style="color:#18a3c4">The Players: A Quick Introduction</h2>
-                    <p>Before we dive in, let's meet the technologies we'll be using:</p>
-                    <ul>
-                        <li><b>AWS (Amazon Web Services):</b> The massive cloud platform where we'll build our infrastructure. It provides all the services we need, from storage to servers.</li>
-                        <li><b>Terraform:</b> An "infrastructure as code" (IaC) tool. Instead of clicking around in the AWS console, we'll write code that <i>describes</i> what we want, and Terraform will make it happen. This is like having a blueprint for
-                            your cloud!
-                        </li>
-                        <li><b>Ansible:</b> An automation tool that will configure our servers <i>after</i> they've been created by Terraform. Think of it as the construction crew that sets up everything inside the house after it's built.</li>
-                        <li><b>Bash:</b> A scripting language we'll use to tie everything together. It's like a project manager that tells Terraform and Ansible when to do what.</li>
-                    </ul>
-                    <div style="display: flex; flex-direction: column; align-items:center;">
-                        <img src="img/aws-2025-03-01-104336.png" alt="AWS Amplify" width="750" class="tutorial-image">
-                    </div>
+                    <h2 style="color:#18a3c4">Part 1: The Jira Connection (Review)</h2>
+                    <p><em>In a previous post/video, we covered the basics of interacting with the Jira API using Python. This forms the foundation of our automation.</em> If you haven't already, I recommend checking out that material to get familiar with
+                        the fundamentals of using the Jira API.</p>
 
-                    <h2 style="color:#18a3c4">Section 1: Laying the Groundwork: Setting up the S3 Bucket</h2>
+                    <h2 style="color:#18a3c4">Part 2: Building the API with Flask</h2>
 
-                    <p>First, we need to set up a special place on AWS to store Terraform's "state file." This file is like a map that tells Terraform what infrastructure it has already created. Storing it remotely in an S3 bucket (AWS's cloud storage service)
-                        is best practice for a few reasons:</p>
+                    <p>The heart of our solution is a Python API that acts as the intermediary between GitHub and Jira. We'll use Flask to build this API. Flask makes it surprisingly easy to create web APIs in Python. It handles the low-level details of
+                        receiving requests and sending responses, so we can focus on the core logic.</p>
+
+                    <h2 style="color:#18a3c4">Why an API?</h2>
+
+                    <p>GitHub can't directly execute a Python script on your computer or a server. An API provides a standardized way for different applications to communicate. Think of it like this:</p>
                     <ul>
-                        <li><b>Collaboration:</b> It allows multiple people to work on the same infrastructure.</li>
-                        <li><b>Version Control:</b> It enables you to track changes to your infrastructure over time.</li>
-                        <li><b>Security:</b> It provides a secure place to store your state file.</li>
+                        <li><strong>Without an API:</strong> It's like trying to give someone instructions by shouting across a crowded room. They might not hear you, and even if they do, they might not understand.</li>
+                        <li><strong>With an API:</strong> It's like having a phone call. You have a clear, defined way to communicate, and you can be sure the other person receives your message.</li>
                     </ul>
 
-                    <p><b>Here's how to set up the S3 bucket:</b></p>
+                    <h2 style="color:#18a3c4">Our Starting Point (Initial Flask Code)</h2>
+
+                    <p>Let's begin with a basic Flask application structure. This code provides the foundation, but we'll need to make several crucialimprovements to make it a functional and robust solution.</p>
+
+                    <pre class="highlight-code">
+                        <code>
+from flask import Flask
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+
+# Create a Flask application instance
+app = Flask(__name__)
+
+@app.route("/createJIRA", methods=['POST'])  # Only accept POST requests to /createJIRA
+def createJIRA():
+    # This code sample uses the 'requests' library:
+    # http://docs.python-requests.org
+
+    # Corrected URL -  MAKE SURE TO UPDATE THIS WITH YOUR INSTANCE
+    url = "https://your-instance.atlassian.net/rest/api/3/issue"
+    API_TOKEN = "YOUR_API_TOKEN"  #  Replace with your ACTUAL API token
+
+    auth = HTTPBasicAuth("your-email@example.com", API_TOKEN) # Replace with your email
+
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+
+    payload = json.dumps({  # The Jira issue data
+        "fields": {
+            "description": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "text": "This the first ticket from the API",
+                                "type": "text"
+                            }
+                        ],
+                        "type": "paragraph"
+                    }
+                ],
+                "type": "doc",
+                "version": 1
+            },
+            "issuetype": {
+                "id": "10003"  #  Replace with your desired issue type ID
+            },
+            "project": {
+                "key": "AUT"  # Replace with your Jira project key!
+            },
+            "summary": "This is from Api automation",
+        },
+        "update": {}
+    })
+
+    response = requests.request(
+        "POST",
+        url,
+        data=payload,
+        headers=headers,
+        auth=auth
+    )
+
+    return json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
+
+app.run('0.0.0.0', port=5000)  # Start the Flask development server
+</code>
+                         </pre>
+
+                    <h2 style="color:#18a3c4">Essential Improvements: Making it Robust and Dynamic</h2>
+
+                    <p>While the above code provides a basic framework, it's missing several critical pieces. Here's what we need to add and why:</p>
+
                     <ol>
-                        <li><b>Open Your Text Editor:</b> Choose your favorite text editor (like VS Code, Sublime Text, Notepad++, etc.).</li>
-                        <li><b>Create a Directory:</b> Create a new folder called <code>bucket</code> to store the files related to the S3 bucket.</li>
-                        <li><b>Create <code>main.tf</code>:</b> Inside the <code>bucket</code> folder, create a file named <code>main.tf</code>. This is where we'll write the Terraform code to create the S3 bucket.</li>
-                        <li><b>Paste This Code:</b> Copy and paste the following code into <code>main.tf</code>:</li>
+                        <li><strong>Getting Data from GitHub (<code>request</code>):</strong> The original code doesn't actually receiveany data from GitHub! We need to use the `request` object from Flask to access the JSON payload sent by the GitHub webhook.
+                            This payload contains all the information about the issue and the comment that triggered the webhook. We'll add `from flask import request, jsonify` to our imports.
+                        </li>
+                        <li><strong>Dynamic Data, Not Hardcoding:</strong> We need to extractthe relevant information (like the comment text, the GitHub issue URL, and the username of the commenter) from the GitHub payload. Hardcoding the Jira issue details
+                            makes the API useless for real-world scenarios.</li>
+                        <li><strong>Trigger Condition (<code>/jira</code>):</strong> We need to add a check to ensure that the Jira ticket is only created when a specific comment is made (e.g., "`/jira`"). Otherwise, everycomment on everyissue would create
+                            a new ticket!</li>
+                        <li><strong>Error Handling: What happens if the Jira API call fails?  What if the GitHub payload is missing some data?  We need to handle these cases gracefully.</li>
+                        <li><strong>Security - Environment Variables:  Hardcoding your API token and Jira URL directly in the code is a majorsecurity risk.  We'll use environment variablesto store this sensitive information.</li>
                     </ol>
 
+                    <p>Here's the improvedFlask code, incorporating these crucial changes:</p>
+
                     <pre class="highlight-code">
                             <code>
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.01"
+from flask import Flask, request, jsonify  # Import request and jsonify
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import os  # Import os for environment variables
+
+app = Flask(__name__)
+
+# --- Use Environment Variables ---
+JIRA_URL = os.environ.get("JIRA_URL", "https://your-instance.atlassian.net")  # Default, but use env var
+API_TOKEN = os.environ.get("JIRA_API_TOKEN")
+JIRA_EMAIL = os.environ.get("JIRA_EMAIL")
+
+@app.route("/createJIRA", methods=['POST'])
+def createJIRA():
+    # --- Get data from the request (GitHub webhook) ---
+    data = request.get_json()  # Get the JSON payload
+
+    # --- Extract relevant information (EXAMPLE - adjust as needed) ---
+    try:
+        comment_body = data['comment']['body']  # Get comment from payload
+        issue_url = data['issue']['html_url']  # Get issue URL
+        user = data['comment']['user']['login']   # Get user
+    except KeyError as e:
+        return jsonify({"error": f"Missing key in payload: {e}"}), 400  # Handle missing data
+
+    # --- Trigger Condition ---
+    if comment_body.strip().lower() != "/jira":  # Check for trigger comment
+        return jsonify({"message": "Not a Jira creation request."}), 200
+
+    # --- Prepare Jira Issue Data (DYNAMIC, not hardcoded) ---
+    payload = json.dumps({
+        "fields": {
+            "description": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "text": f"Issue created from GitHub: {issue_url}\nComment: {comment_body}\nBy user: {user}",
+                                "type": "text"
+                            }
+                        ],
+                        "type": "paragraph"
+                    }
+                ],
+                "type": "doc",
+                "version": 1
+            },
+            "issuetype": {
+                "id": "10003"  # Still potentially hardcoded - consider making this configurable
+            },
+            "project": {
+                "key": "AUT"  # Still hardcoded - consider making this configurable
+            },
+            "summary": f"GitHub Issue: {issue_url.split('/')[-1]}", # Dynamic summary
+        },
+        "update": {}
+    })
+
+    # --- Make the API Request ---
+    auth = HTTPBasicAuth(JIRA_EMAIL, API_TOKEN)
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
     }
-  }
-  required_version = ">= 1.4.6"
-}
 
-module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.14.0"
-  bucket = "YOUR-UNIQUE-BUCKET-NAME" # REPLACE ME!
-  acl    = "private"
-  force_destroy = true
+    response = requests.post(
+        f"{JIRA_URL}/rest/api/3/issue",  # Use f-string for URL
+        data=payload,
+        headers=headers,
+        auth=auth
+    )
 
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
+    # --- Handle the Response (with error checking) ---
+    if response.status_code == 201:  # 201 Created
+        return jsonify({"message": "Jira issue created!", "key": response.json()["key"]}), 201
+    else:
+        return jsonify({"error": "Failed to create Jira issue", "status_code": response.status_code, "response": response.text}), response.status_code
 
-  versioning = {
-    enabled = true
-  }
-}
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)  # debug=True for development
 </code>
-                         </pre>
+</pre>
 
-                    <p>
-                        <b>Important!</b> Change <code>"YOUR-UNIQUE-BUCKET-NAME"</code> to something that <i>you</i> choose. This name needs to be unique across <i>all</i> of AWS, so using your name or organization name is a good start. Also, bucket names
-                        must be lowercase and cannot contain spaces.
-                    </p>
+          <h2 style="color:#18a3c4">Code Breakdown (Improved Version):</h2>
 
-                    <p><b>Let's break down what this code does:</b></p>
                     <ul>
-                        <li>
-                            <code>terraform { ... }</code>: This section tells Terraform which providers (like AWS) and versions we need. It's like declaring the ingredients for our cloud recipe.
-                        </li>
-                        <li>
-                            <code>module "s3_bucket" { ... }</code>: This is where we use a pre-built "module" to create the S3 bucket. Modules are like reusable components that simplify complex tasks. In this case, we're using a module from the Terraform
-                            Registry (a public library of modules).
-                        </li>
-                        <li>
-                            <code>source = "terraform-aws-modules/s3-bucket/aws"</code>: This tells Terraform where to find the S3 bucket module.
-                        </li>
-                        <li>
-                            <code>bucket = "YOUR-UNIQUE-BUCKET-NAME"</code>: This sets the name of the bucket. <i>You need to replace this with your own unique name!</i>
-                        </li>
-                        <li>
-                            <code>acl = "private"</code>: This sets the "access control list" (ACL) to <code>private</code>, meaning only you (or users you explicitly grant access to) can access the bucket. This is important for security.
-                        </li>
-                        <li>
-                            <code>force_destroy = true"</code>: This setting allows Terraform to delete the bucket even if it contains files. This is useful for cleaning up resources, but be careful!
-                        </li>
-                        <li>
-                            <code>versioning = { enabled = true }</code>: This setting enables versioning on the S3 bucket, which means that every time a file is updated in the bucket, the previous version is saved. This is a good practice for data protection.
-                        </li>
-                    </ul>
+                        <li><strong><code>from flask import request, jsonify</code>:</strong> We import <code>request</code> to access incoming data and <code>jsonify</code> to create JSON responses, making our API more robust.</li>
+                        <li><strong>Environment Variables:</strong> We use <code>os.environ.get()</code> to load sensitive information (Jira URL, API token, email) from environment variables. This is a criticalsecurity best practice. Never hardcode credentials!</li>
+                        <li><strong><code>data = request.get_json()</code>:</strong> This line is the key to receiving data from GitHub. The webhook sends a JSON payload, and this line extracts it.</li>
+                        <li><strong>Data Extraction and <code>try...except</code>:</strong> We extract the comment body, issue URL, and user from the <code>data</code> dictionary. The <code>try...except KeyError</code> block is essentialfor handling cases
+                            where the GitHub payload might be different from what we expect. This prevents the application from crashing.</li>
+                        <li><strong>Trigger Condition:</strong> The <code>if comment_body.strip().lower() != "/jira":</code> line checks if the comment contains our trigger phrase ("/jira"). If it doesn't, we return a 200 OK response (so GitHub knows the
+                            webhook was received), but we don't create a Jira ticket.</li>
+                        <li><strong>Dynamic Payload:</strong> The <code>payload</code> sent to Jira is now dynamic. We use f-strings (e.g., <code>f"Issue created from GitHub: {issue_url}"</code>) to insert the relevant information from the GitHub issue into
+                            the Jira ticket description.</li>
+                        <li><strong>Robust Error Handling:</strong> We check the <code>response.status_code</code> from the Jira API. If it's not 201 (Created), we return an error message, including the status code and the response text from Jira. This helps
+                            with debugging.</li>
+                        <li><strong>`response.json()`:</strong> We use the more reliable `response.json()` method to parse the JSON response from Jira.</li>
+                        </ul>
 
-                    <ol start="5">
-                        <li><b>Open Your Terminal:</b> Navigate to the <code>bucket</code> directory in your terminal.</li>
-                        <li><b>Initialize Terraform:</b> Run the command <code>terraform init</code>. This command initializes the Terraform working directory, downloads the necessary plugins, and prepares Terraform to create your infrastructure.</li>
-                        <li><b>Apply the Configuration:</b> Run the command <code>terraform apply -auto-approve</code>. This command tells Terraform to create the S3 bucket according to the code in <code>main.tf</code>. The <code>-auto-approve</code> flag
-                            automatically approves the changes, so you don't have to type "yes."</li>
-                    </ol>
+                        <p><strong>Important:</strong> You'll need to adapt the data extraction part (<code>data['comment']['body']</code>, etc.) to match the actual structure of the GitHub webhook payload. Use <code>print(json.dumps(data, indent=4))</code>                            (as shown in the commented-out line in the code) to inspect the payload and see the exact keys you need to access.</p>
 
-                    <p><b>Congratulations!</b> You've just created your first piece of cloud infrastructure! Head over to the AWS console, navigate to the S3 service, and you should see your new bucket.</p>
+                        <h2 style="color:#18a3c4">Part 3: Deploying to EC2 (or your local machine)</h2>
 
-                    <h2 style="color:#18a3c4">Section 2: Building the Foundation: EC2 Instances and IAM</h2>
-
-                    <p>Now that we have a place to store our Terraform state, let's build the actual infrastructure: two virtual servers (EC2 instances) and the necessary security rules and access permissions (IAM). We'll be creating several files within
-                        a new directory called
-                        <code>instances</code>.</p>
-
-                    <p><b>Here's the plan:</b></p>
-                    <ol>
-                        <li><b>Create the <code>instances</code> Directory:</b> Create a new folder named <code>instances</code> in your project.</li>
-                        <li>
-                            <b>Create Several <code>.tf</code> Files:</b> Inside the <code>instances</code> directory, create the following files:
-                            <ul>
-                                <li><code>providers.tf</code>: To configure the AWS provider.</li>
-                                <li><code>variables.tf</code>: To define variables for instance type and SSH key.</li>
-                                <li><code>sg.tf</code>: To define security groups (firewall rules) for the instances.</li>
-                                <li><code>aws-instances.tf</code>: To define the EC2 instances themselves.</li>
-                                <li><code>key_deployer.tf</code>: To set up the SSH keys.</li>
-                                <li><code>outputs.tf</code>: To display useful information after the infrastructure is created.</li>
-                                <li><code>version.tf</code>: To use the S3 bucket as backend.</li>
-                            </ul>
-                        </li>
-                        <li><b>Fill in the Files:</b> Copy and paste the following code into each file.</li>
-                    </ol>
-
-                    <p><b>1. <code>instances/providers.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-provider "aws" {
-  region = "us-east-2" # Ohio
-}
-
-provider "aws" {
-  alias  = "virginia"
-  region = "us-east-1" # N. Virginia
-}
+                        <ol>
+                            <li><strong>Create an EC2 Instance (if needed):</strong>
+                                <ul>
+                                    <li>Launch an EC2 instance (e.g., a t2.micro running Ubuntu).</li>
+                                    <li>Make sure the security group allows inbound traffic on port 5000 (for our Flask app).</li>
+                                    <li>Connect to the instance via SSH.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Install Dependencies:</strong>
+                                <pre class="terminal-like">
+                                <code>
+sudo apt update
+sudo apt install python3 python3-pip -y
+pip3 install flask requests
 </code>
-                         </pre>
-
-                    <p>This tells Terraform which AWS regions to use. We're deploying one instance in Ohio (<code>us-east-2</code>) and another in Northern Virginia (<code>us-east-1</code>). The <code>alias</code> allows us to specify a different region
-                        for a specific resource.</p>
-
-                    <p><b>2. <code>instances/variables.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-variable "instance_type" {
-  description = "AWS EC2 Instance Type"
-  default     = "t2.micro"
-}
-
-variable "ssh_key" {
-  description = "SSH Key for Instances and Virtual Machines"
-  default     = "ssh_key"
-}
+</pre>
+                            </li>
+                            <li><strong>Transfer the Code:</strong> Copy your Python file (e.g., `github_jira_integration.py`) to the EC2 instance. You can use `scp`, `rsync`, or even copy and paste the code into a new file using a text editor like `nano`
+                                or `vim`.
+                                <pre class="terminal-like">
+                                <code>
+scp -i /path/to/your/key.pem github_jira_integration.py ubuntu@your_ec2_public_ip:/home/ubuntu/
 </code>
-                         </pre>
-
-                    <p>These variables let us customize the instance type (the size of the virtual server) and the SSH key used to access it. The <code>default</code> values provide a starting point.</p>
-
-                    <p><b>3. <code>instances/sg.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-locals {
-  inbound_ports  = [22, 80, 443]
-  outbound_ports = [22, 80, 443, 1433]
-}
-
-resource "aws_security_group" "sg_webserver_ohio" {
-  name        = "webserver-sg-ohio"
-  description = "Security Group Ports for Web Servers"
-
-  dynamic "ingress" {
-    for_each = local.inbound_ports
-    content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
-
-  dynamic "egress" {
-    for_each = local.outbound_ports
-    content {
-      from_port   = egress.value
-      to_port     = egress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
-}
-
-resource "aws_security_group" "sg_webserver_virginia" {
-  provider    = aws.virginia
-  name        = "webserver-sg-virgina"
-  description = "Security Group Ports for Web Servers"
-
-  dynamic "ingress" {
-    for_each = local.inbound_ports
-    content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
-
-  dynamic "egress" {
-    for_each = local.outbound_ports
-    content {
-      from_port   = egress.value
-      to_port     = egress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
-}
+</pre>
+                                <ul>
+                                    <li>Replace <code>/path/to/your/key.pem</code> with the actual path to your private key.</li>
+                                    <li>Replace <code>your_ec2_public_ip</code> with the public IP address of your EC2 instance.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Set Environment Variables:</strong>
+                                <pre class="terminal-like">
+                                <code>
+export JIRA_URL="https://your-instance.atlassian.net"
+export API_TOKEN="YOUR_API_TOKEN"
+export JIRA_EMAIL="your-email@example.com"
 </code>
-                         </pre>
+</pre>
+                                <ul>
+                                    <li><strong>Important:</strong> Replace these with your actual values. For a more permanent solution, add these export commands to your ~/.bashrc or ~/.bash_profile file.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Run the Application:</strong>
+                                <pre class="terminal-like">
+python3 github_jira_integration.py
+</pre>
+                            </li>
+                        </ol>
 
-                    <p>This code creates "security groups," which act like virtual firewalls for our EC2 instances. It opens the following ports:</p>
-                    <ul>
-                        <li><b>22 (SSH):</b> To allow us to connect to the instances remotely using SSH.</li>
-                        <li><b>80 (HTTP):</b> To allow web traffic to reach our website.</li>
-                        <li><b>443 (HTTPS):</b> To allow secure web traffic to reach our website.</li>
-                    </ul>
+                        <p>Your Flask application is now running and accessible on the EC2 instance's public IP address and port 5000.</p>
 
-                    <p><b>Important:</b> The <code>cidr_blocks = ["0.0.0.0/0"]</code> line allows traffic from <i>anywhere</i> on the internet. For a production environment, you'd want to restrict this to specific IP addresses.</p>
-                    <p>You will need to create your own security groups.</p>
 
-                    <p><b>4. <code>instances/aws-instances.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-resource "aws_instance" "web_server_1" {
-  ami                    = "ami-097a2df4ac947655f"  # Ohio
-  instance_type          = var.instance_type
-  key_name               = var.ssh_key
-  vpc_security_group_ids = [aws_security_group.sg_webserver_ohio.id]
-  user_data              = file("../scripts/hulk.yaml")
-  tags = {
-    Name         = "Web-Server-1"
-    time_created = formatdate("MM DD YYYY hh:mm ZZZ", timestamp())
-    department   = "Techie-Nerds"
-    ID           = "ID-${random_id.instance_id_1.hex}"
-  }
-}
+                        <h2 style="color:#18a3c4">Part 4: Setting Up the GitHub Webhook</h2>
 
-resource "aws_instance" "web_server_2" {
-  provider               = aws.virginia
-  ami                    = "ami-053b0d53c279acc90"  # N. Virginia
-  instance_type          = var.instance_type
-  key_name               = var.ssh_key
-  vpc_security_group_ids = [aws_security_group.sg_webserver_virginia.id]
-  user_data              = file("../scripts/hulk.yaml")
-  tags = {
-    Name         = "Web-Server-2"
-    time_created = formatdate("MM DD YYYY hh:mm ZZZ", timestamp())
-    department   = "Techie-Nerds"
-    ID           = "ID-${random_id.instance_id_2.hex}"
-  }
-}
+                        <ol>
+                            <li>Go to your GitHub repository settings.</li>
+                            <li>Click on "Webhooks" in the sidebar.</li>
+                            <li>Click "Add webhook."</li>
+                            <li><strong>Payload URL:</strong> Enter the URL of your Flask API endpoint. This will be something like:
+                                <code>http://your_ec2_public_ip:5000/createJIRA</code> (Replace <code>your_ec2_public_ip</code> with your EC2 instance's public IP address or DNS name).</li>
+                            <li><strong>Content type:</strong> Select <code>application/json</code>.</li>
+                            <li><strong>Secret:</strong> (Optional, but recommended for security) You can set a secret token here. Your Flask application would then need to verify this token to ensure the request is genuinely from GitHub.</li>
+                            <li><strong>Which events would you like to trigger this webhook?</strong>
+                                <ul>
+                                    <li>Choose "Let me select individual events."</li>
+                                    <li>Select "Issue comments." This is crucial.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Active:</strong> Make sure the webhook is active.</li>
+                            <li>Click "Add webhook."</li>
+                        </ol>
 
-resource "random_id" "instance_id_1" {
-  byte_length = 16
-}
+                        <h2 style="color:#18a3c4">Part 5: Testing and Troubleshooting</h2>
 
-resource "random_id" "instance_id_2" {
-  byte_length = 16
-}
-</code>
-                         </pre>
+                        <ol>
+                            <li>Go to a GitHub issue in your repository.</li>
+                            <li>Add a comment containing <code>/jira</code> (or whatever trigger phrase you chose).</li>
+                            <li>Check your Jira project. A new issue should be created.</li>
+                            <li>Check your Flask application logs (on the EC2 instance or your local machine) for any error messages.</li>
+                        </ol>
 
-                    <p>This is where we define the EC2 instances themselves!</p>
-                    <ul>
-                        <li>
-                            <code>ami</code>: This specifies the Amazon Machine Image (AMI), which is a template for the operating system and software installed on the instance. <i>It's critical to choose the correct AMI for your region.</i> The AMIs
-                            provided are for Ubuntu 22.04.
-                        </li>
-                        <li>
-                            <code>instance_type</code>: This sets the size and resources of the instance. <code>t2.micro</code> is a small, inexpensive instance suitable for testing.
-                        </li>
-                        <li>
-                            <code>key_name</code>: This specifies the SSH key to use for accessing the instance. We'll set this up in the next step.
-                        </li>
-                        <li>
-                            <code>vpc_security_group_ids</code>: This associates the instance with the security groups we created earlier, controlling network access.
-                        </li>
-                        <li>
-                            <code>user_data</code>: This is a script that runs when the instance is first launched. We'll use this to set up the user and install some basic software. We'll create a user account.
-                        </li>
-                        <li>
-                            <code>tags</code>: These are labels that can be added to the instance. This lets us identify and manage the instance.
-                        </li>
-                    </ul>
 
-                    <p><b>5. <code>instances/key_deployer.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-resource "aws_key_pair" "deployer_ohio" {
-  key_name   = "ssh_key"
-  public_key = "REPLACE_WITH_YOUR_PUBLIC_KEY"
-}
+                        <h2 style="color:#18a3c4">Important Considerations and Improvements</h2>
 
-resource "aws_key_pair" "deployer_virginia" {
-  provider = aws.virginia
-  key_name   = "ssh_key"
-  public_key = "REPLACE_WITH_YOUR_PUBLIC_KEY"
-}
-</code>
-                         </pre>
+                        <ul>
+                            <li><strong>Security:</strong>
+                                <ul>
+                                    <li><strong>HTTPS:</strong> Use HTTPS for your API endpoint. This requires setting up an SSL certificate (e.g., using Let's Encrypt).</li>
+                                    <li><strong>Webhook Secret:</strong> Use a webhook secret to verify that requests are coming from GitHub.</li>
+                                    <li><strong>Input Validation:</strong> Validate the data received from GitHub to prevent malicious input.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Production Deployment:</strong> The Flask development server (<code>app.run()</code>) is notsuitable for production. For a production deployment, you should use a production-ready WSGI server like Gunicorn or uWSGI,
+                                along with a web server like Nginx or Apache.</li>
+                            <li><strong>Asynchronous Processing:</strong> For long-running tasks (like creating Jira issues), consider using a task queue like Celery to avoid blocking the main API thread.</li>
+                            <li><strong>Logging:</strong> Implement proper logging to help with debugging and monitoring.</li>
+                        </ul>
 
-                    <p>This is where we tell AWS about our SSH key.</p>
-                    <ul>
-                        <li>
-                            <code>key_name</code>: This sets the name of the SSH key. We're using "ssh_key" here, but you can choose a different name.
-                        </li>
-                        <li>
-                            <code>public_key</code>: <i>This is where you need to paste the *public* key from your SSH key pair.</i>
-                        </li>
-                    </ul>
+                        <h2 style="color:#18a3c4">Conclusion</h2>
 
-                    <p><b>Important: Generating Your Own SSH Key Pair</b></p>
-                    <p>You should <b>NEVER</b> include your private keys in the code.</p>
-                    <ol>
-                        <li>Open your terminal (on Linux or macOS) or use a tool like PuTTYgen on Windows.</li>
-                        <li>Generate a new SSH key pair using the following command:</li>
-                    </ol>
-                    <pre class="highlight-code">
-                            <code>
-ssh-keygen -t rsa -b 2048 -f ./keys/ssh_key
-</code>
-                         </pre>
-                    <p>Press Enter to accept the default file location (./keys/ssh_key) and leave the passphrase empty.</p>
-                    <ol start="3">
-                        <li>This will create two files in the keys directory: <code>ssh_key</code> (your <i>private</i> key) and <code>ssh_key.pub</code> (your <i>public</i> key).</li>
-                    </ol>
-
-                    <p><b>6. <code>instances/outputs.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-output "public_dns_server_1" {
-  description = "DNS name of the First EC2 instance"
-  value       = aws_instance.web_server_1.public_dns
-}
-
-output "public_ip_server_1" {
-  description = "Public IP address of the First EC2 instance"
-  value       = aws_instance.web_server_1.public_ip
-}
-
-output "private_ip_server_1" {
-  description = "Private IP address of the First EC2 instance"
-  value       = aws_instance.web_server_1.private_ip
-}
-
-output "web_server_1_id" {
-  description = "ID of the First EC2 instance"
-  value       = aws_instance.web_server_1.tags.ID
-}
-
-output "public_dns_server_2" {
-  description = "DNS name of the Second EC2 instance"
-  value       = aws_instance.web_server_2.public_dns
-}
-
-output "public_ip_server_2" {
-  description = "Public IP address of the Second EC2 instance"
-  value       = aws_instance.web_server_2.public_ip
-}
-
-output "private_ip_server_2" {
-  description = "Private IP address of the Second EC2 instance"
-  value       = aws_instance.web_server_2.private_ip
-}
-
-output "web_server_2_id" {
-  description = "ID of the Second EC2 instance"
-  value       = aws_instance.web_server_2.tags.ID
-}
-</code>
-                         </pre>
-
-                    <p>This code defines what information Terraform will display after it creates the infrastructure. We're outputting the public IP addresses of the instances so we can access them.</p>
-
-                    <p><b>7. <code>instances/version.tf</code>:</b></p>
-                    <pre class="highlight-code">
-                            <code>
-terraform {
-  backend "s3" {
-    bucket = "YOUR-UNIQUE-BUCKET-NAME" # Replace with your bucket name
-    key    = "dir1/terraform.tfstate"
-    region = "us-east-1" # The region where your bucket is.
-  }
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.01"
-    }
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.0.0"
-    }
-  }
-
-  required_version = ">= 1.4.6"
-}
-</code>
-                         </pre>
-
-                    <p><b>Important:</b> Replace <code>"YOUR-UNIQUE-BUCKET-NAME"</code> with the <b>same</b> unique S3 bucket name you chose earlier!</p>
-
-                    <p>The backend code connects the state to the S3 bucket we have already created.</p>
-
-                    <h2 style="color:#18a3c4">Section 3: Setting Up Initial Server Configuration with Cloud-init</h2>
-
-                    <p>Create a directory named <code>scripts</code> with the file <code>hulk.yaml</code>.</p>
-                    <p>The following users will be created:</p>
-                    <ul>
-                        <li>Default ubuntu user</li>
-                        <li><code>hulk</code> user</li>
-                    </ul>
-
-                    <p>Create a file named <code>hulk.yaml</code> with the following code:</p>
-                    <pre class="highlight-code">
-                            <code>
-#cloud-config-mkdocs-system
-
-groups:
-  - ubuntu: [root,sys]
-  - ansible-group
-
-users:
-  - default
-  - name: hulk
-    gecos: Dr. Banner
-    shell: /bin/bash
-    primary_group: ansible-group
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users, admin
-    lock_passwd: false
-    ssh_authorized_keys:
-    # Enter your key here:
-    - REPLACE_WITH_YOUR_PUBLIC_KEY
-
-runcmd:
-  - touch /home/hulk/hello.txt
-  - echo "HULK SMASH WHEN DONE!!" >> /home/hulk/hello.txt
-  - mkdir asteroids
-  - sudo apt update
-</code>
-                         </pre>
-
-                    <p><b>Important:</b> Replace <code>"REPLACE_WITH_YOUR_PUBLIC_KEY"</code> with the <b>same</b> public key you used in <code>instances/key_deployer.tf</code>.</p>
-
-                    <p>This cloud-init script does the following:</p>
-                    <ul>
-                        <li><code>user</code>: The new user account that will be created.</li>
-                        <li><code>runcmd</code>: The <code>runcmd</code> sets up the necessary files and directory.</li>
-                    </ul>
-
-                    <p>We now copy everything inside the main terraform console</p>
-
-                    <h2 style="color:#18a3c4">Section 4: Tying Everything Together with the AutoMagic Script</h2>
-
-                    <p>Open create the AutoMagic bash script in the main directory</p>
-
-                    <pre class="highlight-code">
-                            <code>
-#!/bin/bash
-
-## IMPORTANT! This lab is designed to run on a Linux system, or one with access to a Bash terminal.
-## You will need Ansible installed on the local system for the lab to work properly.
-
-start=$SECONDS
-
-terraform -chdir=bucket init
-terraform -chdir=bucket apply -auto-approve
-
-printf "\n\033[7;31mWAITING 5 SECONDS FOR BUCKET TO INITIALIZE......\033[0m\n\n"
-sleep 5
-
-printf "\n\033[7;31mS3 BUCKET CREATED!!!......\033[0m\n\n"
-
-terraform -chdir=instances init
-terraform -chdir=instances apply -auto-approve
-
-export ANSIBLE_CONFIG=ansible/ansible.cfg
-
-: > ansible/inventory
-echo "[nginx]" > ansible/inventory
-echo $(terraform -chdir=instances output -raw public_ip_server_1) >> ansible/inventory
-echo $(terraform -chdir=instances output -raw public_ip_server_2) >> ansible/inventory
-
-sleep 3
-
-echo
-echo
-
-printf "\n\033[7;31mWAITING 10 SECONDS FOR SYSTEMS TO INITIALIZE - PING CHECK......\033[0m\n\n"
-sleep 10
-
-ansible all --private-key  ~/new_ssh_key -i ansible/inventory -u hulk -m ping
-
-printf "\n\033[7;31mWAITING 10 SECONDS BEFORE RUNNING THE PLAYBOOK......\033[0m\n\n"
-sleep 10
-
-ansible-playbook ansible/playbook.yml --private-key  ~/new_ssh_key -i ansible/inventory -u hulk
-
-printf "\n\033[7;32mPROCESS COMPLETE! \033[0m"
-echo
-printf "\nTime to complete = %s seconds" "$SECONDS"
-echo
-
-## END
-</code>
-                         </pre>
-
-                    <p><b>Remember!</b> We need to edit this file so it correctly leads to the ssh keys that we have generated.</p>
-
-                    <p>5. Make the script executable <code>chmod +x automagic.sh</code></p>
-
-                    <h2 style="color:#18a3c4">Section 6: Run the infrastructure</h2>
-                    <ol>
-                        <li>Let the script rock!</li>
-                        <li>Open the Main Directory</li>
-                        <li>Enter the command: <code>./automagic.sh</code></li>
-                    </ol>
-
-                    <p>Congratulations, we just set up our environment</p>
-
-                    <h2 style="color:#18a3c4">Section 7: CLEAN UP! - Auto Destroy Script!</h2>
-
-                    <p>Enter create <code>autodestroy.sh</code> file in the main project directory</p>
-
-                    <pre class="highlight-code">
-                            <code>
-#!/bin/bash
-
-terraform -chdir=instances destroy -auto-approve
-terraform -chdir=bucket destroy -auto-approve
-</code>
-                         </pre>
-
-                    <p>Now you should be good.</p>
-                    <p>You can now implement this, code is on my github: https://github.com/Nightwalka/Terraform-applied-project-.git</p>
-
+                        <p>By combining the power of Python, Flask, GitHub webhooks, and a touch of DevOps thinking, we've created a valuable automation that streamlines the workflow between developers and project managers. This project demonstrates how
+                            a relatively small amount of code can have a big impact on efficiency and collaboration. Remember to adapt the code and configurations to your specific needs, and always prioritize security and robust error handling. Happy
+                            automating!
+                        </p>
                 </div>
             </div>
         </div>
