@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to installing WSL (Windows Subsystem for Linux) in a custom directory to save C drive space and manage installations effectively.">
+    <meta name="author" content="Ron-Tino">
+
+    <title>Free Up Disk C: Installing WSL (Ubuntu) in a Custom Directory (And Why I Ditched Mac!)</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .highlight-code {
+            background-color: #f0f0f0;
+            /* Light grey for general code */
+            color: #333;
+            /* Darker text for readability */
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            display: block;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        
+        .terminal-like {
+            background-color: #2d2d2d;
+            /* Darker grey for terminal */
+            color: #00ff00;
+            /* Green text, common for terminals */
+            padding: 15px;
+            border-radius: 5px;
+            font-family: "Lucida Console", Monaco, monospace;
+            overflow-x: auto;
+            display: block;
+            border: 1px solid #444;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        header.intro-header {
+            margin-top: 0;
+            padding-top: 0;
+        }
+        
+        .tutorial-image {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        
+        h2.section-heading {
+            color: #18a3c4;
+            /* Consistent heading color */
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Back To Project List</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Replace 'img/wsl-header.jpg' with a relevant image -->
+    <header class="intro-header" style="background-image: url('img/ubuntu.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Free Up Disk C: Installing WSL (Ubuntu) in a Custom Directory (And Why I Regret Ditching Mac!)</h1>
+                        <h2 class="subheading">Save space on your C drive and manage your WSL installations more effectively.</h2>
+                        <span class="meta">Created by <a href="#">Ron-Tino</a> on June 15, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div style="display: flex; flex-direction: column; align-items:center;">
+                        <img src="img/d-drive-is-full.png" alt="AWS Lambda" width="750" class="tutorial-image">
+                    </div>
+                    <p>As a Cloud Engineer you may find yourself constantly using WSL (Windows Subsystem for Linux). The challenge is though it becomes very important to free up space on your drive C, often used for installing WSL as valuable storage is
+                        quickly consumed, especially when working with resource-intensive projects involving Kubernetes, Docker, and Terraform. If you are on Windows and you're like me the question of "why am I even using this system to develop cloud
+                        solutions" might even cross your mind.</p>
+
+                    <p>To explain that, many developers running WSL (Windows Subsystem for Linux) often face the challenge of limited space on their C drive. Now you might ask if you're using cloud tools that you shouldn't be using the cloud. I agree to
+                        a point; however, there are still a number of advantages to using a windows such as being able to test locally without incurring a heavy bill.</p>
+
+                    <p>I made the switch years ago from being a full apple guy to a windows machine since that allowed me to use simulation softwares that would be helpful in my then career. While I needed that then as my career shifts towards the cloud
+                        I keep finding myself using a workaround for the windows to use the cloud solutions. With that being the case, one thing that keeps getting on my nerves is storage on my Windows device.</p>
+
+                    <p>In this tutorial, I'll show you how to install Ubuntu (or another Linux distribution) within WSL in a custom directory on a different drive, freeing up space on your C drive.</p>
+
+                    <h2 class="section-heading">Problem:</h2>
+                    <ul>
+                        <li>WSL installs to C drive by default.</li>
+                        <li>Limited C drive space on your computer.</li>
+                        <li>Cloud-related projects (Kubernetes, Docker, Terraform) consume significant space.</li>
+                    </ul>
+
+                    <h2 class="section-heading">Solution:</h2>
+                    <ul>
+                        <li>Install WSL distribution in a custom directory on another drive (e.g., D drive).</li>
+                    </ul>
+
+                    <h2 class="section-heading">Prerequisites:</h2>
+                    <ul>
+                        <li>Windows Subsystem for Linux enabled.</li>
+                        <li>PowerShell.</li>
+                        <li>Administrative privileges.</li>
+                    </ul>
+                    <hr>
+                    <h2 class="section-heading">Method 1: Installing Ubuntu 18.04 in WSL to D drive</h2>
+
+                    <h3>Step 1: Create Directory in D Drive</h3>
+                    <p>Create a folder where you'll install your distribution.</p>
+                    <pre class="terminal-like"><code>mkdir D:\Ubuntu1804
+cd D:\Ubuntu1804</code></pre>
+
+                    <h3>Step 2: Download Ubuntu Appx File</h3>
+                    <p>Download Ubuntu 18.04 appx file using PowerShell.</p>
+                    <pre class="terminal-like"><code>Invoke-WebRequest -Uri https://cloud-images.ubuntu.com/wsl/bionic/daily/ubuntu-1804-server-wsl.rootfs.tar.gz -OutFile Ubuntu.appx -UseBasicParsing</code></pre>
+                    <p>The above command might not work so you can use the command:</p>
+                    <pre class="terminal-like"><code>Invoke-WebRequest -Uri https://aka.ms/wslubuntu1804 -OutFile Ubuntu.appx -UseBasicParsing</code></pre>
+
+                    <h3>Step 3: Rename and Extract .appx Package</h3>
+                    <p>Rename the <code>.appx</code> file to <code>.zip</code> and extract its contents using PowerShell. This step reveals the executable and essential files.</p>
+                    <pre class="terminal-like"><code>Rename-Item .\Ubuntu.appx Ubuntu.zip
+Expand-Archive .\Ubuntu.zip -DestinationPath .\Ubuntu -Verbose</code></pre>
+
+                    <h3>Step 4: Run ubuntu1804.exe or ubuntu.exe</h3>
+                    <p>After the command is done the files will automatically expand so go to your file and find the EXE file and run it.</p>
+
+                    <h3>Step 5: Launch and Configure Ubuntu</h3>
+                    <p>After Installation create a username and password. Once the setup is complete, a terminal window will appear, requesting you to create a UNIX username and password.</p>
+
+                    <h3>Step 6: Verify Installation</h3>
+                    <p>After the version 18 has been created which can be cross checked by checking:</p>
+                    <pre class="terminal-like"><code>wsl -l -v</code></pre>
+                    <hr>
+                    <h2 class="section-heading">Method 2: Manually Install Latest Ubuntu (e.g., 22.04 or 24.04) in a Custom Folder</h2>
+
+                    <h3>💡 1. Choose Version and Create Target Folder</h3>
+                    <p>Let's say you want Ubuntu 22.04. Create a folder for it:</p>
+                    <pre class="terminal-like"><code>mkdir D:\Ubuntu2204
+cd D:\Ubuntu2204</code></pre>
+
+                    <h3>🌐 2. Download the Ubuntu .appx Installer</h3>
+                    <p>Use this in PowerShell to download Ubuntu 22.04:</p>
+                    <pre class="terminal-like"><code>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2204 -OutFile Ubuntu.appx -UseBasicParsing</code></pre>
+                    <p>(Optional): For Ubuntu 24.04 (if available), you’d use:</p>
+                    <pre class="terminal-like"><code>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2404 -OutFile Ubuntu.appx -UseBasicParsing</code></pre>
+
+                    <h3>📦 3. Unpack the Installer</h3>
+                    <pre class="terminal-like"><code>Rename-Item .\Ubuntu.appx Ubuntu.zip
+Expand-Archive .\Ubuntu.zip -DestinationPath .\Ubuntu -Verbose
+cd Ubuntu</code></pre>
+
+                    <h3>🚀 4. Register the Distro with WSL</h3>
+                    <p>Now register it under WSL:</p>
+                    <pre class="terminal-like"><code>.\ubuntu2204.exe</code></pre>
+                    <p>(or <code>.\ubuntu.exe</code> depending on what’s inside the folder)</p>
+                    <p>On first launch, it will ask you to create a UNIX username and password.</p>
+
+                    <h3>💾 5. (Optional) Set as Default Distro</h3>
+                    <p>If you want to make this the default distro:</p>
+                    <pre class="terminal-like"><code>wsl --set-default Ubuntu-22.04</code></pre>
+                    <p>(You can check name with <code>wsl -l</code>)</p>
+                    <hr>
+                    <h2 class="section-heading">Explanation:</h2>
+                    <ul>
+                        <li><strong><code>mkdir D:\Ubuntu1804</code></strong>: Creates a directory named "Ubuntu1804" on your D drive.</li>
+                        <li><strong><code>cd D:\Ubuntu1804</code></strong>: Changes the current directory in PowerShell to the newly created folder.</li>
+                        <li><strong><code>Invoke-WebRequest</code></strong>: Downloads the Ubuntu distribution file (appx) from Microsoft's servers. The <code>-UseBasicParsing</code> parameter is added for compatibility.</li>
+                        <li><strong><code>Rename-Item</code></strong>: Renames the downloaded <code>.appx</code> file to <code>.zip</code>.</li>
+                        <li><strong><code>Expand-Archive</code></strong>: Extracts the contents of the renamed <code>.zip</code> file into a subfolder.</li>
+                        <li><strong><code>.\ubuntu1804.exe</code></strong>: Launch the WSL application and create the user.</li>
+                        <li><strong><code>wsl -l -v</code></strong>: list out the versions for linux and show which of the versions has been created.</li>
+                    </ul>
+
+                    <h2 class="section-heading">Conclusion:</h2>
+                    <p>By following these steps, you can effectively manage your disk space and improve the performance of your system while continuing to utilize the benefits of WSL for cloud-related projects. This will ensure that your resources are directed
+                        to the correct drivers and you will avoid the errors associated with memory.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://x.com/Nightwalka11" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@Ron_can_cloud" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.ron-tino.site/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Nightwalka" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/ronald-tino-027a6122b" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright © 2024 Ron-Tino</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
